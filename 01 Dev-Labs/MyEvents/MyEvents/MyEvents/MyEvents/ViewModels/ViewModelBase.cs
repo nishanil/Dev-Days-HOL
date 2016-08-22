@@ -1,4 +1,5 @@
 ﻿using MyEvents.Common;
+using System.Windows.Input;
 
 namespace MyEvents.ViewModels
 {
@@ -22,5 +23,7 @@ namespace MyEvents.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+
+        public ICommand RefreshCommand { get; set; }
     }
 }
