@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyEvents.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,13 @@ namespace MyEvents
         {
             InitializeComponent();
 
-            MainPage = new MyEvents.MainPage();
+            var mainPage = new TabbedPage();
+            mainPage.Children.Add(new NavigationPage(new SessionsPage()) { Title = "Sessions"});
+            mainPage.Children.Add(new ContentPage() { Title = "Speakers" });
+            mainPage.Children.Add(new ContentPage() { Title = "About" });
+
+
+            MainPage = mainPage;
         }
 
         protected override void OnStart()

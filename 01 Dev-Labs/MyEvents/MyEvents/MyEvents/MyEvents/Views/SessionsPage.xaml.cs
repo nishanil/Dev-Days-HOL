@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyEvents.Models;
+using MyEvents.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,25 @@ namespace MyEvents.Views
         public SessionsPage()
         {
             InitializeComponent();
+        }
+
+        public SessionsViewModel ViewModel { get { return (BindingContext as SessionsViewModel); } }
+
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var item = args.SelectedItem as Session;
+            if (item == null)
+                return;
+
+            //viewModel.GoToDetailsCommand.Execute(item.Id);
+
+            // Manually deselect item
+            SessionsListView.SelectedItem = null;
+        }
+
+        void OnGetClicked(object sender, EventArgs e)
+        {
+            ViewModel?.GetSessionsCommand?.Execute(null);
         }
     }
 }
