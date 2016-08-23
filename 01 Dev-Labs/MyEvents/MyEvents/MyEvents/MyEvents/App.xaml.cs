@@ -14,10 +14,20 @@ namespace MyEvents
         {
             InitializeComponent();
 
-            var mainPage = new TabbedPage() { Title = "My Events" };
-            mainPage.Children.Add(new NavigationPage(new SessionsPage()) { Title = "Sessions"});
-            mainPage.Children.Add(new NavigationPage(new SpeakersPage()) { Title = "Speakers" });
-            mainPage.Children.Add(new NavigationPage (new AboutPage()) { Title = "About" });
+            var mainPage = new TabbedPage();
+            var sessionsPage = new NavigationPage(new SessionsPage()) { Title = "Sessions" };
+            var speakersPage = new NavigationPage(new SpeakersPage()) { Title = "Speakers" };
+            var aboutPage = new NavigationPage(new AboutPage()) { Title = "About" };
+
+            Device.OnPlatform(iOS: () => {
+                sessionsPage.Icon = "tab_feed.png";
+                speakersPage.Icon = "tab_person.png";
+                aboutPage.Icon = "tab_about.png";
+
+            });
+            mainPage.Children.Add(sessionsPage);
+            mainPage.Children.Add(speakersPage);
+            mainPage.Children.Add(aboutPage);
 
 
             MainPage = mainPage;
