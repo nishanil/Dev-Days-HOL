@@ -31,9 +31,16 @@ namespace MyEvents.Views
             SessionsListView.SelectedItem = null;
         }
 
-        void OnGetClicked(object sender, EventArgs e)
+        void OnSyncClicked(object sender, EventArgs e)
         {
             ViewModel?.GetSessionsCommand?.Execute(null);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (ViewModel.Sessions.Count == 0)
+                ViewModel.GetSessionsCommand.Execute(null);
         }
     }
 }

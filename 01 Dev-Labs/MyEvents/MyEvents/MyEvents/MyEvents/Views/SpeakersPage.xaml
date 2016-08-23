@@ -6,7 +6,7 @@
              Title="{Binding Title}"
              x:Name="SpeakersPage">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Get" Clicked="OnGetClicked" />
+    <ToolbarItem Text="Sync" Clicked="OnSyncClicked" />
   </ContentPage.ToolbarItems>
   <ContentPage.BindingContext>
     <vm:SpeakersViewModel/>

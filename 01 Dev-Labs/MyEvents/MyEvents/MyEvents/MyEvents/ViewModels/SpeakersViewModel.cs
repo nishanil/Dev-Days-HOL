@@ -22,7 +22,7 @@ namespace MyEvents.ViewModels
         public SpeakersViewModel()
         {
             Speakers = new ObservableCollection<Speaker>();
-
+            Title = "Speakers";
             GetSpeakersCommand = RefreshCommand = new Command(
                 async () => await GetSpeakers(),
                 () => !IsBusy);

@@ -23,7 +23,7 @@ namespace MyEvents.ViewModels
         public SessionsViewModel()
         {
             Sessions = new ObservableCollection<Session>();
-
+            Title = "Sessions";
             GetSessionsCommand = RefreshCommand = new Command(
                 async () => await GetSessions(),
                 () => !IsBusy);

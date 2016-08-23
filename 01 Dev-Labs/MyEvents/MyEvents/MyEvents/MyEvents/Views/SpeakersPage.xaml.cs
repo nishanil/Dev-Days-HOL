@@ -32,9 +32,16 @@ namespace MyEvents.Views
             SpeakersListView.SelectedItem = null;
         }
 
-        void OnGetClicked(object sender, EventArgs e)
+        void OnSyncClicked(object sender, EventArgs e)
         {
             ViewModel?.GetSpeakersCommand?.Execute(null);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (ViewModel.Speakers.Count == 0)
+                ViewModel.GetSpeakersCommand.Execute(null);
         }
     }
 }
