@@ -17,7 +17,7 @@ namespace MyEvents
             var mainPage = new TabbedPage() { Title = "My Events" };
             mainPage.Children.Add(new NavigationPage(new SessionsPage()) { Title = "Sessions"});
             mainPage.Children.Add(new NavigationPage(new SpeakersPage()) { Title = "Speakers" });
-            mainPage.Children.Add(new NavigationPage (new ContentPage()) { Title = "About" });
+            mainPage.Children.Add(new NavigationPage (new AboutPage()) { Title = "About" });
 
 
             MainPage = mainPage;
