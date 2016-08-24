@@ -19,14 +19,14 @@ namespace MyEvents.Views
 
         public SessionsViewModel ViewModel { get { return (BindingContext as SessionsViewModel); } }
 
-        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as Session;
             if (item == null)
                 return;
 
-            //viewModel.GoToDetailsCommand.Execute(item.Id);
-
+            await Navigation.PushAsync(new SessionDetailPage() { BindingContext = new SessionDetailViewModel(item)});
+           
             // Manually deselect item
             SessionsListView.SelectedItem = null;
         }

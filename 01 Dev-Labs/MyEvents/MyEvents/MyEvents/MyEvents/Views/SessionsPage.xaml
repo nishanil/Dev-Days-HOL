@@ -28,9 +28,15 @@
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>
-                <StackLayout Padding="10">
-                  <Image x:Name="HeroImage" Aspect="AspectFill" 
-                         Source="{Binding Image}" HeightRequest="200" 
+                <StackLayout>
+                  <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness"
+                                iOS="10"
+                                Android="10"
+                                WinPhone="0, 0, 0, 10" />
+                  </StackLayout.Padding>
+                  <Image x:Name="HeroImage" Aspect="AspectFill"
+                         Source="{Binding Image}" HeightRequest="200"
                           />
                   <Label Text="{Binding Title}"
                          LineBreakMode="NoWrap"

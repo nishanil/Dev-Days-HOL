@@ -11,10 +11,10 @@ namespace MyEvents.Models
     {
 
         [JsonProperty("end")]
-        public string End { get; set; }
+        public DateTime End { get; set; }
 
         [JsonProperty("start")]
-        public string Start { get; set; }
+        public DateTime Start { get; set; }
 
         [JsonProperty("abstract")]
         public string Abstract { get; set; }
