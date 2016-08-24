@@ -26,7 +26,6 @@ namespace MyEvents.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::ModernHttpClient.Resource.String.library_name = global::MyEvents.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::MyEvents.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -2201,11 +2200,14 @@ namespace MyEvents.Droid
 			// aapt resource value: 0x7f0200a0
 			public const int mr_ic_play_light = 2130837664;
 			
-			// aapt resource value: 0x7f0200a2
-			public const int notification_template_icon_bg = 2130837666;
+			// aapt resource value: 0x7f0200a3
+			public const int notification_template_icon_bg = 2130837667;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int xamarin_logo = 2130837665;
+			public const int speakerphone = 2130837665;
+			
+			// aapt resource value: 0x7f0200a2
+			public const int xamarin_logo = 2130837666;
 			
 			static Drawable()
 			{
@@ -2941,12 +2943,6 @@ namespace MyEvents.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f080027
-			public const int ApplicationName = 2131230759;
-			
-			// aapt resource value: 0x7f080026
-			public const int Hello = 2131230758;
-			
 			// aapt resource value: 0x7f08000f
 			public const int abc_action_bar_home_description = 2131230735;
 			
@@ -3012,9 +3008,6 @@ namespace MyEvents.Droid
 			
 			// aapt resource value: 0x7f080025
 			public const int character_counter_pattern = 2131230757;
-			
-			// aapt resource value: 0x7f080028
-			public const int library_name = 2131230760;
 			
 			// aapt resource value: 0x7f080000
 			public const int mr_button_content_description = 2131230720;

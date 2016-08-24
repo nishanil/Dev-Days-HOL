@@ -3,8 +3,7 @@
     "Microsoft.Net.Http": "2.2.29",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Newtonsoft.Json": "9.0.1",
-    "Xamarin.Forms": "2.3.1.114",
-    "Xamarin.Forms.Theme.Light": "1.0.0.43-pre1"
+    "Xamarin.Forms": "2.3.1.114"
   },
   "frameworks": {
     "uap10.0": {}
