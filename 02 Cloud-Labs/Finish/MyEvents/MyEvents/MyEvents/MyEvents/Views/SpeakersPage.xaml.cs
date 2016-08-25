@@ -20,13 +20,13 @@ namespace MyEvents.Views
 
         public SpeakersViewModel ViewModel { get { return (BindingContext as SpeakersViewModel); } }
 
-        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as Speaker;
             if (item == null)
                 return;
 
-            //viewModel.GoToDetailsCommand.Execute(item.Id);
+            await Navigation.PushAsync(new SpeakerDetailPage(item, ViewModel));
 
             // Manually deselect item
             SpeakersListView.SelectedItem = null;

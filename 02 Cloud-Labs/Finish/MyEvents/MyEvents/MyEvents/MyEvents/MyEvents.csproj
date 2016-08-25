@@ -65,6 +65,9 @@
     <Compile Include="Views\SessionsPage.xaml.cs">
       <DependentUpon>SessionsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SpeakerDetailPage.xaml.cs">
+      <DependentUpon>SpeakerDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpeakersPage.xaml.cs">
       <DependentUpon>SpeakersPage.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SessionDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SpeakerDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

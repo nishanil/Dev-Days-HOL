@@ -28,6 +28,12 @@ namespace MyEvents.ViewModels
                 () => !IsBusy);
         }
 
+        public async Task UpdateSpeaker(Speaker speaker)
+        {
+            await App.DataManager.SaveSpeakerAsync(speaker);
+            RefreshCommand.Execute(null);
+        }
+
         async Task GetSpeakers()
         {
             if (IsBusy)
