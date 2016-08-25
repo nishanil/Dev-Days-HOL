@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MyEvents.ViewModels;assembly=MyEvents"
+             xmlns:local="clr-namespace:MyEvents;assembly=MyEvents"
+             
+             x:Class="MyEvents.Views.SessionDetailPage">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <StackLayout BackgroundColor="{StaticResource Primary}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+      <ContentView Padding="10,40,10,40" VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+          <Label Text="{Binding SessionName}" TextColor="White" FontAttributes="Bold" FontSize="22"/>
+          <Label FontSize="16" Text="{Binding SpeakerName}" TextColor="White"/>
+          <Label FontSize="16" Text="{Binding Time}" TextColor="White"/>        
+        </StackLayout>
+      </ContentView>
+    </StackLayout>
+    <ScrollView Grid.Row="1">
+      <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+        <Label FontSize="22">
+          <Label.FormattedText>
+            <FormattedString>
+              <FormattedString.Spans>
+                <Span Text="Abstract" FontAttributes="Bold" FontSize="16" ForegroundColor="{StaticResource LightTextColor}"/>
+              </FormattedString.Spans>
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+        <Label Text="{Binding Abstract}" />
+          
+        <!--<Button Margin="0,10,0,0"
+                        Text="Speak"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" Command="{Binding SpeakCommand}"/>-->
+        <local:SpeakButton
+               Margin="0,10,0,0"
+                        Text="Speak" Command="{Binding SpeakCommand}" />
+        
+        <!--<Button Margin="0,10,0,0"
+                Text="Add to Favorite"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"/> -->
+      </StackLayout>
+    </ScrollView>
+  </Grid>
+</ContentPage>
