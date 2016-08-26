@@ -1,0 +1,80 @@
+[
+    {
+      "end": "2016-04-27T18:00:00Z",
+      "start": "2016-04-27T17:15:00Z",
+      "abstract": "The new Apple TV has been released, and YOU can be one of the first developers to write apps for it. To make things even better, you can build these apps in C#! This session will introduce the basics of how to create a tvOS app with Xamarin, including: differences between tvOS and iOS APIs, TV user interface best practices, responding to user input, as well as the capabilities and limitations of building apps for a television. Grab some popcorn—this is going to be good!",
+      "title": "As Seen On TV … Bringing C# to the Living Room",
+      "presenter": "Matthew Soucoup",
+      "biography": "Matthew is a Xamarin MVP and Certified Xamarin Developer from Madison, WI. He founded his company Code Mill Technologies and started the Madison Mobile .Net Developers Group.  Matt regularly speaks on .Net and Xamarin development at user groups, code camps and conferences throughout the Midwest. Matt gardens hot peppers, rides bikes, and loves Wisconsin micro-brews and cheese.",
+      "image": "http://i.imgur.com/ASj60DP.jpg",
+      "avatar": "http://i.imgur.com/ASj60DP.jpg",
+      "room": "Crick"  
+    },
+    {
+      "end": "2016-04-28T16:15:00Z",
+      "start": "2016-04-28T15:30:00Z",
+      "abstract": "Touchscreens are everywhere now (even the desktop!) and this workshop with designer Josh Clark (author of \"Designing for Touch\") tells you what you need to know to make the most of them. Fingers and thumbs turn desktop design conventions on their head and the ergonomics of handheld devices demanding entirely new design patterns for both web and apps. It's no longer just how your pixels look, but also how they feel. This in-depth seminar takes a hands-on approach to touchscreen design with practical guidelines, rich examples, exercises, and new rules that bust \"settled\" conventions.",
+      "title": "Designing for Touch Continued",
+      "presenter": "Josh Clark",
+      "biography": "Josh Clark is the founder of Big Medium, a design agency specializing in connected devices, mobile experiences, and responsive web design. His clients include Samsung, Time Inc, TechCrunch, Entertainment Weekly, eBay, O’Reilly Media, and many others. Josh has written several books, including “Designing for Touch” (A Book Apart, 2015) and “Tapworthy: Designing Great iPhone Apps” (O’Reilly, 2010). He speaks around the world about what’s next for digital interfaces.\n",
+      "image": "http://i.imgur.com/UPhZonl.jpg",
+      "avatar": "http://i.imgur.com/UPhZonl.jpg",
+      "room": "Linnaeus"
+    },
+    {
+     
+      "end": "2016-04-27T18:00:00Z",
+      "start": "2016-04-27T17:15:00Z",
+      "abstract": "Star Simpson leads a conversation on what a society in an increasingly automated world looks like. How and where will robots perform human work? What does the world look like in an increasingly networked society? Are we on the cusp of a third industrial revolution? Will there be new jobs when current jobs are automated? What does automation mean today given the advent of connected devices? How does this all relate to mobile development? And, what human potential can we unlock through the combined power of human understanding coupled with software-enabled ability? ",
+      "title": "By Our Own Devices: Will Robots Take Our Jobs?",
+      "presenter": "Star Simpson",
+      "biography": "A robot-builder from an early age, Star has explored robotics and automation in electronics and software from MIT to Shenzhen. She previously worked on some of the first robots to demonstrate human emotional expressiveness in Cynthia Brezeal’s personal robotics lab. Her interest carried her into the aerial robotics world, exploring drone-based delivery through TacoCopter many years ahead of anyone else. Now residing in SF, she’s looking for ways that tech can advance and extend human capability.",
+      "image": "http://i.imgur.com/t4DWNkf.jpg",
+      "avatar": "http://i.imgur.com/t4DWNkf.jpg",
+      "room": "Watson"
+    },
+    {
+      "end": "2016-04-27T20:15:00Z",
+      "start": "2016-04-27T19:30:00Z",
+      "abstract": "With recent advances in wearable technology, it's now possible to create novel fitness experiences without building custom hardware. In this talk we take you through creating a fitness tracker in C# on Android Wear, covering Google Play Services and watch-faces along the way. If this piques your interest, you can build your own Android Wear-based fitness tracker in our code lab!",
+      "title": "Google Fit, Android Wear, and Xamarin",
+      "presenter": "Peter Friese",
+      "biography": "Peter is a developer advocate at Google where he is responsible for Google's relationship with Xamarin. He's the author of the first ever Android Watchface written in C# and an avid collector of smart watches. He likes a good cup of English breakfast tea (milk, no sugar), any time of day.\"",
+      "image": "http://i.imgur.com/kIyjVcM.jpg",
+      "avatar": "http://i.imgur.com/kIyjVcM.jpg",
+      "room": "Franklin"
+    },
+    {
+      "end": "2016-04-27T21:15:00Z",
+      "start": "2016-04-27T20:30:00Z",
+      "abstract": "Building an application that needs to consume media, such as audio or video? In this session, Martjin explains how you can play any media in a cross-platform manner and how to play media using external plugins like VLC and ExoPlayer. ",
+      "title": "Cross-Platform Media in Xamarin",
+      "presenter": "Martijn van Dijk",
+      "biography": "Martijn is a Xamarin consultant at Xablu, Xamarin MVP, contributor of MvvmCross, and creator of several Xamarin plugins.",
+      "image": "http://i.imgur.com/DbZlxvM.jpg",
+      "avatar": "http://i.imgur.com/DbZlxvM.jpg",
+      "room": "Watson"
+    },
+    {
+      "end": "2016-04-28T18:15:00Z",
+      "start": "2016-04-28T17:30:00Z",
+      "abstract": "Hang out with Rodrigo Kumpera as he covers the basics of how garbage collection (and the garbage collector on Xamarin.iOS in particular) works, and how you can use that knowledge to build higher performing apps. He'll explain the interaction between Mono’s garbage collector with iOS memory management and take a look at common problems and scenarios relating to that. Plus, he's going to cover new features in Xamarin.iOS, such as NewRefCount!",
+      "title": "Best Practices for Effective iOS Memory Management",
+      "presenter": "Rodrigo Kumpera",
+      "biography": "Rodrigo Kumpera has happily worked on the Mono runtime for over ten years now, putting effort into sandboxing, garbage collection, and integrating the runtime with Xamarin's mobile products. So, in other words, he's a seasoned professional who really loves what he's doing. Rodrigo is originally from Brazil, but currently resides in Boston, Massachusetts with his dog, Lola.",
+      "image": "http://i.imgur.com/YDEv0oz.jpg",
+      "avatar": "http://i.imgur.com/YDEv0oz.jpg",
+      "room": "Watson"
+    },
+    {
+      "end": "2016-04-28T15:15:00Z",
+      "start": "2016-04-28T14:30:00Z",
+      "abstract": "Xamarin.Forms comes with seven layouts out of the box, but what if you need advanced layout capabilities? In this session, you'll learn how to build powerful, custom layouts with real, live coding from Jason Smith.",
+      "title": "Creating Custom Layouts in Xamarin.Forms",
+      "presenter": "Jason Smith",
+      "biography": "Jason Smith has been enthusiastically working on UI and front-end development for the past decade, touching almost every major UI toolkit in the process (don't worry, his hands are clean). At Xamarin he works on research and development projects. Jason's most recent endeavor at the company has him leading the Xamarin.Forms project to create a true cross-platform UI solution.",
+      "image": "http://i.imgur.com/XT8VHMf.jpg",
+      "avatar": "http://i.imgur.com/XT8VHMf.jpg",
+      "room": "Watson"
+    }
+  ]

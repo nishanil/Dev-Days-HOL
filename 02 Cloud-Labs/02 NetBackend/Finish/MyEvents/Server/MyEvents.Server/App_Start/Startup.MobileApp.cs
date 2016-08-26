@@ -64,6 +64,46 @@ namespace MyEvents.Server
                 context.Set<TodoItem>().Add(todoItem);
             }
 
+            var sesionsJson = System.IO.File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("~/App_Data/sessions.json"));
+            var sessions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Session>>(sesionsJson);
+            foreach (Session session in sessions)
+            {
+                session.Id = Guid.NewGuid().ToString();
+                context.Set<Session>().Add(session);
+            }
+
+            var speakersJson = System.IO.File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("~/App_Data/speakers.json"));
+            var speakers = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Speaker>>(speakersJson);
+            foreach (Speaker speaker in speakers)
+            {
+                speaker.Id = Guid.NewGuid().ToString();
+                context.Set<Speaker>().Add(speaker);
+            }
+
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Trace.TraceInformation(
+                              "Class: {0}, Property: {1}, Error: {2}",
+                              validationErrors.Entry.Entity.GetType().FullName,
+                              validationError.PropertyName,
+                              validationError.ErrorMessage);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError(ex.Message + "\n" + ex.InnerException.Message + "\n" + ex.StackTrace);
+            }
+
+
             base.Seed(context);
         }
     }
