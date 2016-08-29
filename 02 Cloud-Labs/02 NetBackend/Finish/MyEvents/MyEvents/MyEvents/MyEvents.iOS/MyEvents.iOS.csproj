@@ -90,7 +90,8 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\SpeakButtonRenderer.cs" />
+    <Compile Include="Renderers\EditorWithBorderRenderer.cs" />
+    <Compile Include="Renderers\FeedbackButtonRenderer.cs" />
     <Compile Include="TextToSpeech.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
 
-[assembly: ExportRenderer(typeof(SpeakButton), typeof(SpeakButtonRenderer))]
+[assembly: ExportRenderer(typeof(FeedbackButton), typeof(FeedbackButtonRenderer))]
 namespace MyEvents.UWP.Renderers
 {
-    public class SpeakButtonRenderer : ButtonRenderer
+    public class FeedbackButtonRenderer : ButtonRenderer
     {
         //Add UWP Sepcific custoization here
     }

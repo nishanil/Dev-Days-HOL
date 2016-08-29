@@ -38,11 +38,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\RatingBehavior.cs" />
     <Compile Include="Cloud\AzureDataManager.cs" />
+    <Compile Include="Converters\RatingConverter.cs" />
+    <Compile Include="Helpers\ImageResourceExtension.cs" />
     <Compile Include="IDataManager.cs" />
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Controls\SpeakButton.cs" />
+    <Compile Include="Controls\FeedbackButton.cs" />
     <Compile Include="ITextToSpeech.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -58,6 +61,9 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeedbackPage.xaml.cs">
+      <DependentUpon>FeedbackPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SessionDetailPage.xaml.cs">
       <DependentUpon>SessionDetailPage.xaml</DependentUpon>
@@ -154,6 +160,16 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\FeedbackPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\star_outline.png" />
+    <EmbeddedResource Include="Images\star_selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

@@ -39,7 +39,10 @@
         <!--<local:SpeakButton
                Margin="0,10,0,0"
                         Text="Speak" Command="{Binding SpeakCommand}" />-->
-        
+        <local:FeedbackButton x:Name="FeedBackButton"
+          Margin="0,10,0,0" 
+          Text="Give Feedback"
+        Clicked="FeedBackButton_Clicked"/>
         <!--<Button Margin="0,10,0,0"
                 Text="Add to Favorite"
                 BackgroundColor="{StaticResource Primary}"

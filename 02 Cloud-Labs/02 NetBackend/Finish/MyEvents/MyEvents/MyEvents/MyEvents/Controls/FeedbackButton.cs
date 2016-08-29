@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace MyEvents
 {
-    public class SpeakButton : Button
+    public class FeedbackButton : Button
     {
         //Empty class. The renderer handles the rest
     }

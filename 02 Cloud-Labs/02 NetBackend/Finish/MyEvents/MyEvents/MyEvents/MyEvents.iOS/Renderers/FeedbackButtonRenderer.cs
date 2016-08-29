@@ -7,10 +7,10 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(SpeakButton), typeof(SpeakButtonRenderer))]
+[assembly: ExportRenderer(typeof(FeedbackButton), typeof(FeedbackButtonRenderer))]
 namespace MyEvents.iOS.Renderers
 {
-    public class SpeakButtonRenderer : ButtonRenderer
+    public class FeedbackButtonRenderer : ButtonRenderer
     {
         // Add iOS specific customization here
     }

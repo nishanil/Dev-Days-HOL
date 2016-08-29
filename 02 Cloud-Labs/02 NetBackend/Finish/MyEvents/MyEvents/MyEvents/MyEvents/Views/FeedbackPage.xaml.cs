@@ -8,17 +8,18 @@ using Xamarin.Forms;
 
 namespace MyEvents.Views
 {
-    public partial class SessionDetailPage : ContentPage
+    public partial class FeedbackPage : ContentPage
     {
-        public SessionDetailPage()
+        public FeedbackPage()
         {
             InitializeComponent();
         }
 
-        private async void FeedBackButton_Clicked(object sender, EventArgs e)
+        async void FinishButton_Clicked(object sender, EventArgs e)
         {
-
-            await Navigation.PushModalAsync(new FeedbackPage());
+            await Navigation.PopModalAsync();
         }
     }
+
+
 }

@@ -14,10 +14,10 @@ using MyEvents.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(SpeakButton), typeof(SpeakButtonRenderer))]
+[assembly: ExportRenderer(typeof(FeedbackButton), typeof(FeedbackButtonRenderer))]
 namespace MyEvents.Droid.Renderers
 {
-    public class SpeakButtonRenderer : ButtonRenderer
+    public class FeedbackButtonRenderer : ButtonRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Button> e)
         {
