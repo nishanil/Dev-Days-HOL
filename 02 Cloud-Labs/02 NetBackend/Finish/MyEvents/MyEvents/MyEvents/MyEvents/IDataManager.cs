@@ -1,4 +1,5 @@
-﻿using MyEvents.Models;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using MyEvents.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace MyEvents
 {
     public interface IDataManager
     {
+        MobileServiceClient CurrentClient { get; }
+
         Task<IEnumerable<Session>> GetSessionsAsync();
         Task<IEnumerable<Speaker>> GetSpeakersAsync();
 

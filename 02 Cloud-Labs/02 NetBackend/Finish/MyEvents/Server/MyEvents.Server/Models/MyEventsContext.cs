@@ -34,6 +34,8 @@ namespace MyEvents.Server.Models
         public System.Data.Entity.DbSet<MyEvents.Server.DataObjects.Session> Sessions { get; set; }
 
         public System.Data.Entity.DbSet<MyEvents.Server.DataObjects.Speaker> Speakers { get; set; }
+
+        public System.Data.Entity.DbSet<MyEvents.Server.DataObjects.Feedback> Feedbacks { get; set; }
     }
 
 }

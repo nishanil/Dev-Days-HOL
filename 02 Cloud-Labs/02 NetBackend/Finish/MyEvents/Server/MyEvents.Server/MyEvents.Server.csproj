@@ -156,10 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
     <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DataObjects\Feedback.cs" />
     <Compile Include="DataObjects\Session.cs" />
     <Compile Include="DataObjects\Speaker.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />

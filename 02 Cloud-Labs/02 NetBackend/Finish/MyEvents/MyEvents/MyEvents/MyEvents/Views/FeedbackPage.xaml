@@ -11,7 +11,6 @@
         <Setter Property="TextColor" Value="{StaticResource Primary}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Margin" Value="10,0,0,0" />
-
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
@@ -84,7 +83,6 @@
         </Grid>
       </StackLayout>
       <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        
         <Label FontSize="18" Style="{StaticResource LabelSmallFontStyle}" Text="{Binding Source={x:Reference starFive},
                                     Path=Rating, Converter={StaticResource RatingConverter}}" ></Label>
       </StackLayout>
@@ -93,7 +91,6 @@
       <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10" >
         <Button x:Name="FinishButton" WidthRequest="150"  BackgroundColor="{StaticResource Primary}" TextColor="White" Text="Send" Clicked="FinishButton_Clicked"/>
         <Button x:Name="CloseButton" WidthRequest="150"  BackgroundColor="{StaticResource LightBackground}" TextColor="Black" Text="Close" Clicked="FinishButton_Clicked"/>
-
       </StackLayout>
     </StackLayout>
   </ScrollView>

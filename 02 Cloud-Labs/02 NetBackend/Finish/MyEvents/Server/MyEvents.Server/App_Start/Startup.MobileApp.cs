@@ -49,7 +49,7 @@ namespace MyEvents.Server
         }
     }
 
-    public class MyEventsDataInitializer : CreateDatabaseIfNotExists<MyEventsContext>
+    public class MyEventsDataInitializer : DropCreateDatabaseIfModelChanges<MyEventsContext>
     {
         protected override void Seed(MyEventsContext context)
         {
