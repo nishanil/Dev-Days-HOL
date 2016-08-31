@@ -17,6 +17,9 @@ namespace MyEvents
 
         Task SaveSpeakerAsync(Speaker speaker);
 
+        Task SaveFeedbackAsync(Feedback feedback);
+
+        Task<IEnumerable<Feedback>> GetFeedbackAsync();
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MyEvents.Helpers;
+using MyEvents.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +15,9 @@ namespace MyEvents.Views
         public LoginPage()
         {
             InitializeComponent();
+            BindingContext = new LoginViewModel(Navigation);
         }
 
-        public async void LoginClicked(object sender, EventArgs e)
-        {
-            if (!Settings.IsLoggedIn)
-            {
-                var authenticator = DependencyService.Get<IAuthentication>();
-                await authenticator.Authenticate();
-
-            }
-            await Navigation.PopModalAsync();
-
-        }
+        
     }
 }

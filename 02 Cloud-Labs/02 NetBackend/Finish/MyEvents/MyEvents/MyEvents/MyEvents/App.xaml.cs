@@ -32,6 +32,8 @@ namespace MyEvents
             mainPage.Children.Add(speakersPage);
             mainPage.Children.Add(aboutPage);
 
+            
+            
 
             MainPage = mainPage;
         }

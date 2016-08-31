@@ -1,4 +1,5 @@
 ﻿using MyEvents.Helpers;
+using MyEvents.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,20 @@ namespace MyEvents.Views
         private async void FeedBackButton_Clicked(object sender, EventArgs e)
         {
             if (Settings.IsLoggedIn)
-                await Navigation.PushModalAsync(new FeedbackPage());
+            {
+                await Navigation.PushModalAsync(new FeedbackPage(((SessionDetailViewModel)BindingContext).SelectedSession));
+            }
             else
             {
                 isFeedbackPageRequested = true;
+
+                if (Device.OS == TargetPlatform.iOS)
+                {
+                    await Navigation.PushAsync(new LoginPage());
+                }
+                else
                 await Navigation.PushModalAsync(new LoginPage());
+
             }
         }
 
@@ -33,7 +43,7 @@ namespace MyEvents.Views
             base.OnAppearing();
             if (isFeedbackPageRequested && Settings.IsLoggedIn)
             {
-                await Navigation.PushModalAsync(new FeedbackPage());
+                await Navigation.PushModalAsync(new FeedbackPage(((SessionDetailViewModel)BindingContext).SelectedSession));
                 isFeedbackPageRequested = false;
                 
             }

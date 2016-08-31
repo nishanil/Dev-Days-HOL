@@ -9,7 +9,7 @@ namespace MyEvents.Models
 {
     public class Feedback : ModelBase
     {
-        [JsonProperty("userid")]
+        [JsonProperty("userId")]
         public string UserId { get; set; }
 
         [JsonProperty("rating")]
@@ -18,7 +18,7 @@ namespace MyEvents.Models
         [JsonProperty("text")]
         public string Text { get; set; }
 
-        [JsonProperty("sessionid")]
+        [JsonProperty("sessionId")]
         public string SessionId { get; set; }
     }
 }

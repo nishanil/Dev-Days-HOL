@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
+using MyEvents.Helpers;
 using MyEvents.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace MyEvents.Cloud
         MobileServiceClient client;
 
         private AzureDataManager()
-        { 
+        {
             Initialize();
         }
 
@@ -49,7 +50,8 @@ namespace MyEvents.Cloud
             var store = new MobileServiceSQLiteStore("localstore.db");
             store.DefineTable<Session>();
             store.DefineTable<Speaker>();
-
+            store.DefineTable<Feedback>();
+            ConfigureAuth();
             //Initializes the SyncContext using the default IMobileServiceSyncHandler.
             this.client.SyncContext.InitializeAsync(store);
         }
@@ -80,7 +82,6 @@ namespace MyEvents.Cloud
             try
             {
                 await this.client.SyncContext.PushAsync();
-
                 await client.GetSyncTable<T>().PullAsync($"all{identifier}", this.client.GetSyncTable<T>().CreateQuery());
             }
             catch (MobileServicePushFailedException exc)
@@ -117,6 +118,7 @@ namespace MyEvents.Cloud
         {
             if (item.Id == null)
             {
+                item.Id = Guid.NewGuid().ToString();
                 await this.client.GetSyncTable<T>().InsertAsync(item);
             }
             else
@@ -141,6 +143,26 @@ namespace MyEvents.Cloud
         public async Task SaveSpeakerAsync(Speaker speaker)
         {
             await SaveItemAsync<Speaker>(speaker);
+        }
+
+        public async Task SaveFeedbackAsync(Feedback feedback)
+        {
+            await SaveItemAsync<Feedback>(feedback);
+            await SyncAsync<Feedback>();
+        }
+
+        public async Task<IEnumerable<Feedback>> GetFeedbackAsync()
+        {
+            return await GetItemsAsync<Feedback>();
+        }
+
+        public void ConfigureAuth()
+        {
+            if (this.client.CurrentUser == null && Settings.UserId != null)
+            {
+                this.client.CurrentUser = new MobileServiceUser(Settings.UserId);
+                this.client.CurrentUser.MobileServiceAuthenticationToken = Settings.AuthToken;
+            }
         }
         #endregion
 

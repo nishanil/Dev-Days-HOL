@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyEvents.Models;
+using MyEvents.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +12,15 @@ namespace MyEvents.Views
 {
     public partial class FeedbackPage : ContentPage
     {
-        public FeedbackPage()
+
+        public FeedbackPage(Session selectedSession) 
         {
             InitializeComponent();
+
+            BindingContext = new FeedbackViewModel(Navigation, selectedSession);
         }
 
-        async void FinishButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+
     }
 
 
