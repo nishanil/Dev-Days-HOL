@@ -24,7 +24,6 @@ namespace MyEvents.ViewModels
                 {
                     var authenticator = DependencyService.Get<IAuthentication>();
                     await authenticator.Authenticate();
-                    //Sync the feedback table for future use.
                 }
                 if (Device.OS == TargetPlatform.iOS)
                 {
