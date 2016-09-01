@@ -12,8 +12,8 @@ This lab will cover
 * Creating UI in XAML & DataBinding
 * Page Navigations
 * Platform Customizations
-    * OnPlatform <T>
-    * Custom Renderers
+    * OnPlatform
+    * Custom Renderer
     * Dependency Service
 
 In the **Start** folder of this repository is the partially completed **MyEvents** solution. Open the solution **MyEvents.sln**
@@ -134,7 +134,7 @@ The data for speakers will be pulled down from a rest endpoint which we will loo
         public string Biography { get; set; }
 
 ```
-### View Model
+### ViewModel
 
 The **SpeakersViewModel.cs** will provide all of the functionality for the Xamarin.Forms view to display data. It will consist of a list of speakers and a method that can be called to get the speakers from the server. It will also contain a boolean flag that will indicate if we are getting data in a background task. Open the **MyEvents/ViewModels/SpeakersViewModel.cs** file to work on.
 
@@ -402,25 +402,69 @@ mainPage.Children.Add(speakersPage);
 Final code should look like this:
 
 ```csharp
-        public App()
-        {
-            InitializeComponent();
+public App()
+{
+    InitializeComponent();
 
-            var mainPage = new TabbedPage();
-            var sessionsPage = new NavigationPage(new SessionsPage()) { Title = "Sessions" };
-            var speakersPage = new NavigationPage(new SpeakersPage()) { Title = "Speakers" };
-            var aboutPage = new NavigationPage(new AboutPage()) { Title = "About" };
+    var mainPage = new TabbedPage();
+    var sessionsPage = new NavigationPage(new SessionsPage()) { Title = "Sessions" };
+    var speakersPage = new NavigationPage(new SpeakersPage()) { Title = "Speakers" };
+    var aboutPage = new NavigationPage(new AboutPage()) { Title = "About" };
 
-            mainPage.Children.Add(sessionsPage);
-            mainPage.Children.Add(speakersPage);
-            mainPage.Children.Add(aboutPage);
+    mainPage.Children.Add(sessionsPage);
+    mainPage.Children.Add(speakersPage);
+    mainPage.Children.Add(aboutPage);
 
 
-            MainPage = mainPage;
-        }
+    MainPage = mainPage;
+}
 ```
+
+Notice that we used the `NavigationPage` there. We will learn more about it in the next section.
 
 ### Run the App!
 
 Hey! You just created the SpeakersPage, pulled the data from the internet and bound to the view.
 
+## Page Navigations
+
+Xamarin.Forms provides a number of different page navigation experiences, depending upon the Page type being used. We used the `TabbedPage` in our **MainPage** for an easy navigation. Now, we will build a master-Detail experience to our `Session` page i.e. when users click on an item in the Sessions List, we will navigate them to a detailed page. We will use Hierarchical Navigation using the `NavigationPage` class which provides a hierarchical navigation experience where the user is able to navigate through pages, forwards and backwards, as desired. 
+
+The first page added to a navigation stack is referred to as the root page of the application, which is already done in the **App.xaml.cs** file.
+
+```csharp
+var sessionsPage = new NavigationPage(new SessionsPage()) { Title = "Sessions" };
+```
+
+Open **SessionsPage.xaml** and add an `ItemSelected` event handler to the ListView **SessionsListView**. 
+
+```xml
+ItemSelected="OnItemSelected"
+``` 
+
+Finally, add the EventHandlder to the code behind **SessionsPage.xaml.cs**
+
+```csharp
+async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+{
+    var item = args.SelectedItem as Session;
+    if (item == null)
+        return;
+
+    await Navigation.PushAsync(new SessionDetailPage() { BindingContext = new SessionDetailViewModel(item)});
+    
+    // Manually deselect item
+    SessionsListView.SelectedItem = null;
+}
+```
+
+ It is necessary to invoke the `PushAsync` method on the Navigation property of the current page, as demonstrated above. This causes the `SessionDetailPage` instance to be pushed onto the navigation stack, where it becomes the active page. 
+ Similarly, the active page can be popped  method from the navigation stack by pressing the Back button on the device, regardless of whether this is a physical button on the device or an on-screen button. Alternatively, you can use the `PopAsync` method in code.
+
+ ### Run the App!
+
+Run the app on all available platforms and notice the differences. 
+
+* On iOS, a navigation bar is present at the top and a Back button that returns to the previous page.
+* On Android, a navigation bar is present at the top of the page that displays a an icon, and a Back button that returns to the previous page. 
+* On Windows Phone, a navigation bar is present at the top of the page that displays a title. Windows Phone lacks the Back button on the navigation bar because an on-screen Back button is present at the bottom of the screen.

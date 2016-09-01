@@ -19,7 +19,6 @@
         <ListView ItemsSource="{Binding Sessions}"
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="true"
-                  ItemSelected="OnItemSelected"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsPullToRefreshEnabled="true"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
