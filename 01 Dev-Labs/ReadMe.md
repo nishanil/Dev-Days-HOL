@@ -94,44 +94,44 @@ When you run the app, you will see that it successfully runs with two tabs **Ses
 The data for speakers will be pulled down from a rest endpoint which we will look at it in the **ViewModel** section. The class **Speaker** is the model that is used to hold the data. Open the **MyEvents/Models/Speaker.cs** file and add the following properties inside of the **Speaker** class:
 
 ```csharp
-        [JsonProperty("name")]
-        public string Name { get; set; }
+[JsonProperty("name")]
+public string Name { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+[JsonProperty("description")]
+public string Description { get; set; }
 
-        [JsonProperty("image")]
-        public string Image { get; set; }
+[JsonProperty("image")]
+public string Image { get; set; }
 
-        [JsonProperty("title")]
-        public string Title { get; set; }
+[JsonProperty("title")]
+public string Title { get; set; }
 
-        [JsonProperty("company")]
-        public string Company { get; set; }
+[JsonProperty("company")]
+public string Company { get; set; }
 
-        [JsonProperty("website")]
-        public string Website { get; set; }
+[JsonProperty("website")]
+public string Website { get; set; }
 
-        [JsonProperty("blog")]
-        public string Blog { get; set; }
+[JsonProperty("blog")]
+public string Blog { get; set; }
 
-        [JsonProperty("twitter")]
-        public string Twitter { get; set; }
+[JsonProperty("twitter")]
+public string Twitter { get; set; }
 
-        [JsonProperty("email")]
-        public string Email { get; set; }
+[JsonProperty("email")]
+public string Email { get; set; }
 
-        [JsonProperty("avatar")]
-        public string Avatar { get; set; }
+[JsonProperty("avatar")]
+public string Avatar { get; set; }
 
-        [JsonProperty("webiste")]
-        public string Webiste { get; set; }
+[JsonProperty("webiste")]
+public string Webiste { get; set; }
 
-        [JsonProperty("titile")]
-        public string Titile { get; set; }
+[JsonProperty("titile")]
+public string Titile { get; set; }
 
-        [JsonProperty("biography")]
-        public string Biography { get; set; }
+[JsonProperty("biography")]
+public string Biography { get; set; }
 
 ```
 ### ViewModel
@@ -461,10 +461,11 @@ async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
  It is necessary to invoke the `PushAsync` method on the Navigation property of the current page, as demonstrated above. This causes the `SessionDetailPage` instance to be pushed onto the navigation stack, where it becomes the active page. 
  Similarly, the active page can be popped  method from the navigation stack by pressing the Back button on the device, regardless of whether this is a physical button on the device or an on-screen button. Alternatively, you can use the `PopAsync` method in code.
 
- ### Run the App!
+### Run the App!
 
 Run the app on all available platforms and notice the differences. 
 
 * On iOS, a navigation bar is present at the top and a Back button that returns to the previous page.
 * On Android, a navigation bar is present at the top of the page that displays a an icon, and a Back button that returns to the previous page. 
 * On Windows Phone, a navigation bar is present at the top of the page that displays a title. Windows Phone lacks the Back button on the navigation bar because an on-screen Back button is present at the bottom of the screen.
+
