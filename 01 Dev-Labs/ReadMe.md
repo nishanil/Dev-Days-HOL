@@ -1,1 +1,300 @@
-## Getting Started
+# Dev Days Hands On Lab - Let's build an App!
+
+In this module, we will be building our first [Xamarin.Forms](http://xamarin.com/forms) app leveraging Visual Studio and targeting iOS, Android, and UWP platforms. The app that we will be building is called **MyEvents** that gets Session and Speaker information from a rest endpoint and displays them beautifully in a tabular UI.
+
+[Image]
+
+## Overview
+
+This lab will cover
+
+* Creating Models and ViewModels
+* Creating UI in XAML & DataBinding
+* Page Navigations
+* Platform Customizations
+    * OnPlatform <T>
+    * Custom Renderers
+    * Dependency Service
+
+In the **Start** folder of this repository is the partially completed **MyEvents** solution. Open the solution **MyEvents.sln**
+
+![Solution](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/Solution-Overview.png?token=AC9rtsR3IlM7k__1H_Rdwfg34JDtMWeEks5X0Z4YwA%3D%3D)
+
+This solution contains 4 projects
+
+* MyEvents (Portable) - Portable Class Library that will have all shared code (model, views, and view models).
+* MyEvents.Droid - Xamarin.Android application
+* MyEvents.iOS - Xamarin.iOS application
+* MyEvents.UWP - Windows 10 UWP application (can only be run from VS 2015 on Windows 10)
+
+## Pre-requisites 
+
+ Before executing the labs be sure to setup your macOS or Windows machines as mentioned in the Lab Setup guidelines. The steps & screenshots in this guide focuses on Visual Studio development in Windows. However, the same labs can be executed in Xamarin Studio on a macOS too. 
+
+#### NuGet Restore
+
+All projects have the required NuGet packages already installed, so there will be no need to install additional packages during the Hands on Lab. The first thing that we must do is restore all of the NuGet packages from the internet.
+
+This can be done by **Right-clicking** on the **Solution** and clicking on **Restore NuGet packages...**
+
+![Restore NuGets](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/Restore-NugetPackages.png?token=AC9rtpnblrgShE67VR5AsTAEqYvp6Hd9ks5X0Z5VwA%3D%3D)
+
+Now **Right-click** on the **Solution** build & Run the app!
+
+
+## Run the App!
+
+Set the iOS, Android, or UWP (Windows/VS2015 only) as the startup project and start debugging.
+
+![Startup project](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/StartProject-RunTheApp.png?token=AC9rtmrS-LmiPbZdHHyJ6b6paJqyBzo1ks5X0Z5-wA%3D%3D)
+
+#### iOS
+If you are on a PC then you will need to be connected to a macOS device with Xamarin installed to run and debug the app.
+
+If connected, you will see a Green connection status. Select `iPhoneSimulator` as your target, and then select the Simulator to debug on.
+
+![iOS Setup](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/iOS-RunTheApp.png?token=AC9rtm_7JJGO6hUfVpmY2JQrB31hgrLYks5X0Z6jwA%3D%3D)
+
+#### Android
+
+Simply set the MyEvents.Droid as the startup project and select a simulator to run on. The first compile may take some additional time as Support Packages are downloaded, so please be patient. 
+
+If you run into an issue building the project with an error such as:
+
+**aapt.exe exited with code** or **Unsupported major.minor version 52** then your Java JDK may not be setup correctly, or you have newer build tools installed then what is supported. See this technical bulletin for support: https://releases.xamarin.com/technical-bulletin-android-sdk-build-tools-24/
+
+Additionally, see James' blog for visual reference: http://motzcod.es/post/149717060272/fix-for-unsupported-majorminor-version-520
+
+![Android Setup](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/Android-RunTheApp.png?token=AC9rtkpzx2lUuuUJd8Ra-WEVCSCnRSGLks5X0Z7BwA%3D%3D)
+
+#### Windows 10
+
+Ensure that you have the SQLite extension installed for UWP apps:
+
+Go to **Tools->Extensions & Updates**
+
+Under Online search for *SQLite* and ensure that you have SQlite for Univeral Windows Platform installed (current version 3.14.1)
+
+If there is a new version then install it, remove the SQLite for Universal Windows Platform from the References in the UWP app. Then add a new Reference and under **Universal Windows -> Extensions** you will see SQlite for Universal Windows Platform. Add that in and you will be good to go.
+
+![Sqlite](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/SQLite.png?token=AC9rtp6J3FsI5nv8KJWgzrTWn-0Du1IHks5X0Z8vwA%3D%3D)
+
+Simply set the MyEvents.UWP as the startup project and select debug to **Local Machine**.
+
+![UWP Setup](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/UWP-RunTheApp.png?token=AC9rtiiGnxLyq5C69pN2j3Yc34prl7LWks5X0Z8ZwA%3D%3D)
+
+## Result
+
+When you run the app, you will see that it successfully runs with two tabs **Sessions** and **About** page. As part of this exercise, you will be building the **Speakers** page and attaching it to the main `TabbedPage`. 
+
+## Creating Models and ViewModels
+
+## Model
+
+The data for speakers will be pulled down from a rest endpoint which we will look at it in the **ViewModel** section. The class **Speaker** is the model that is used to hold the data. Open the **MyEvents/Models/Speaker.cs** file and add the following properties inside of the **Speaker** class:
+
+```csharp
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("image")]
+        public string Image { get; set; }
+
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("company")]
+        public string Company { get; set; }
+
+        [JsonProperty("website")]
+        public string Website { get; set; }
+
+        [JsonProperty("blog")]
+        public string Blog { get; set; }
+
+        [JsonProperty("twitter")]
+        public string Twitter { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        [JsonProperty("avatar")]
+        public string Avatar { get; set; }
+
+        [JsonProperty("webiste")]
+        public string Webiste { get; set; }
+
+        [JsonProperty("titile")]
+        public string Titile { get; set; }
+
+        [JsonProperty("biography")]
+        public string Biography { get; set; }
+
+```
+### View Model
+
+The **SpeakersViewModel.cs** will provide all of the functionality for the Xamarin.Forms view to display data. It will consist of a list of speakers and a method that can be called to get the speakers from the server. It will also contain a boolean flag that will indicate if we are getting data in a background task. Open the **MyEvents/ViewModels/SpeakersViewModel.cs** file to work on.
+
+Use an **ObservableCollection<Speaker>** for storing the speakers data inside the ViewModel. **ObservableCollection** is used because it has built-in support for **CollectionChanged** event that the view subscribes to and automatically updates when the data is added or removed.
+
+Above the constructor of the SpeakersViewModel class definition, declare an auto-property:
+
+```csharp
+public ObservableCollection<Speaker> Speakers { get; set; }
+```
+
+Inside of the constructor, create a new instance of the `ObservableCollection`:
+
+```csharp
+public SpeakersViewModel()
+{
+    Speakers = new ObservableCollection<Speaker>();
+}
+```
+##### GetSpeakers Method
+
+Create a method named **GetSpeakers** which will retrieve the speaker data from the internet. We will first implement this with a simple HTTP request, but later, in the next module, we will update it to grab and sync the data from Azure.
+
+Create a method called **GetSpeakers** which is of type *async Task* (it is a Task because it is using Async methods):
+
+```csharp
+private async Task GetSpeakers()
+{
+
+}
+```
+The following code will be written INSIDE of this method:
+
+First is to check if we are already grabbing data:
+
+```csharp
+private async Task GetSpeakers()
+{
+    if(IsBusy)
+        return;
+}
+```
+
+Next we will create some scaffolding for try/catch/finally blocks:
+
+```csharp
+private async Task GetSpeakers()
+{
+    if (IsBusy)
+        return;
+
+    Exception error = null;
+    try
+    {
+        IsBusy = true;
+
+    }
+    catch (Exception ex)
+    {
+        error = ex;
+    }
+    finally
+    {
+       IsBusy = false;
+    }
+
+}
+```
+
+Notice, that the *IsBusy* is set to true and then false when we start to call to the server and when we finish.
+
+Now, we will use *HttpClient* to grab the json from the server inside of the **try** block.
+
+ ```csharp
+using(var client = new HttpClient())
+{
+    //grab json from server
+    var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+} 
+```
+
+Still inside of the **using**, we will Deserialize the json and turn it into a list of Speakers with Json.NET:
+
+```csharp
+var items = JsonConvert.DeserializeObject<List<Speaker>>(json);
+```
+
+Still inside of the **using**, we will clear the speakers and then load them into the ObservableCollection:
+
+```csharp
+Speakers.Clear();
+foreach (var item in items)
+    Speakers.Add(item);
+```
+If anything goes wrong the **catch** will save the exception and AFTER the finally block we can pop up an alert:
+
+```csharp
+if (error != null)
+    await Application.Current.MainPage.DisplayAlert("Error!", error.Message, "OK");
+```
+
+The completed code should look like:
+
+```csharp
+private async Task GetSpeakers()
+{
+    if (IsBusy)
+        return;
+
+    Exception error = null;
+    try
+    {
+        IsBusy = true;
+        
+        using(var client = new HttpClient())
+        {
+            //grab json from server
+            var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+            
+            //Deserialize json
+            var items = JsonConvert.DeserializeObject<List<Speaker>>(json);
+            
+            //Load speakers into list
+            Speakers.Clear();
+            foreach (var item in items)
+                Speakers.Add(item);
+        } 
+    }
+    catch (Exception ex)
+    {
+        Debug.WriteLine("Error: " + ex);
+        error = ex;
+    }
+    finally
+    {
+        IsBusy = false;
+    }
+
+    if (error != null)
+        await Application.Current.MainPage.DisplayAlert("Error!", error.Message, "OK");
+}
+```
+
+Our main method for getting data is now complete!
+
+##### GetSpeakers Command
+
+Instead of invoking this method directly, we will expose it with a **Command**. A Command has an interface that knows what method to invoke and has an optional way of describing if the Command is enabled.
+
+Create a new Command called **GetSpeakersCommand**:
+
+```csharp
+public Command GetSpeakersCommand { get; set; }
+```
+
+Inside of the `SpeakersViewModel` constructor, create the `GetSpeakersCommand` and pass it two methods: one to invoke when the command is executed and another that determines whether the command is enabled. Both methods can be implemented as lambda expressions as shown below:
+
+```csharp
+GetSpeakersCommand = new Command(
+                async () => await GetSpeakers(),
+                () => !IsBusy);
+```
+
