@@ -12,7 +12,7 @@ This lab will cover
 * Creating UI in XAML & DataBinding
 * Page Navigations
 * Platform Customizations
-    * OnPlatform
+    * Device.OnPlatform
     * Custom Renderer
     * Dependency Service
 
@@ -466,6 +466,20 @@ async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
 Run the app on all available platforms and notice the differences. 
 
 * On iOS, a navigation bar is present at the top and a Back button that returns to the previous page.
-* On Android, a navigation bar is present at the top of the page that displays a an icon, and a Back button that returns to the previous page. 
-* On Windows Phone, a navigation bar is present at the top of the page that displays a title. Windows Phone lacks the Back button on the navigation bar because an on-screen Back button is present at the bottom of the screen.
+* On Android, a navigation bar is present at the top of the page that displays an icon, and a Back button that returns to the previous page. Android's on-screen button also works exactly as expected.
+* On Windows Phone, a navigation bar is present at the top of the page. Windows Phone lacks the Back button on the navigation bar because an on-screen Back button is present at the bottom of the screen.
+
+## Platform Customizations
+
+Until now, we wrote every line of code in Portable Class Library (MyEvents) that helped us share 100% of code on all platforms. Xamarin.Forms is extensible and lets you incorporate platform-specific features. You can use the `Device` class to create platform-specific behavior in shared code and the user interface (including using XAML) for simple customizations. If you have complex customizations you can use `DependencyService` to invoke a platform code from your shared code. `CustomRenderers` can be used for small styling changes or sophisticated platform-specific layout and behavior customization.
+
+### Device.OnPlatform
+
+In iOS, Tabs require icons to 
+
+### DependencyService
+
+### CustomRenderers
+
+## Wrapping Up!
 
