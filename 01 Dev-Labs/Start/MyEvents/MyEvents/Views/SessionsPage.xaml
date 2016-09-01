@@ -1,37 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:vm="clr-namespace:MyEvents.ViewModels;assembly=MyEvents"
-             x:Class="MyEvents.Views.SpeakersPage"
+             xmlns:vm="clr-namespace:MyEvents.ViewModels;assembly=MyEvents"
+             x:Class="MyEvents.Views.SessionsPage"
              Title="{Binding Title}"
-             x:Name="SpeakersPage">
+             x:Name="SessionsPage">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Sync" Command="{Binding GetSpeakersCommand}" />
+    <ToolbarItem Text="Sync" Clicked="OnSyncClicked" />
   </ContentPage.ToolbarItems>
   <ContentPage.BindingContext>
-    <vm:SpeakersViewModel/>
+    <vm:SessionsViewModel/>
   </ContentPage.BindingContext>
   <ContentPage.Content>
     <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
       <StackLayout
         AbsoluteLayout.LayoutFlags="All"
         AbsoluteLayout.LayoutBounds="0,0,1,1">
-        <ListView ItemsSource="{Binding Speakers}"
+        <ListView ItemsSource="{Binding Sessions}"
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="true"
+                  ItemSelected="OnItemSelected"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsPullToRefreshEnabled="true"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                   CachingStrategy="RecycleElement"
-                  x:Name="SpeakersListView">
+                  x:Name="SessionsListView">
           <ListView.ItemTemplate>
             <DataTemplate>
-              <ImageCell Text="{Binding Name}"
-                         Detail="{Binding Title}"
-                         ImageSource="{Binding Avatar}"/>
+              <ViewCell>
+                <StackLayout>
+                  <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness"
+                                iOS="10"
+                                Android="10"
+                                WinPhone="0, 0, 0, 10" />
+                  </StackLayout.Padding>
+                  <Image x:Name="HeroImage" Aspect="AspectFill"
+                         Source="{Binding Image}" HeightRequest="200"
+                          />
+                  <Label Text="{Binding Title}"
+                         LineBreakMode="NoWrap"
+                         Style="{DynamicResource ListItemTextStyle}"
+                         FontSize="16"/>
+                  <Label Text="{Binding Presenter}"
+                         LineBreakMode="NoWrap"
+                         Style="{DynamicResource ListItemDetailTextStyle}"
+                         FontSize="13"/>
+                </StackLayout>
+              </ViewCell>
             </DataTemplate>
           </ListView.ItemTemplate>
-
         </ListView>
       </StackLayout>
       <StackLayout IsVisible="{Binding IsBusy}"

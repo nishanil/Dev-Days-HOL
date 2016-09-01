@@ -22,8 +22,6 @@ namespace MyEvents.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (ViewModel.Speakers.Count == 0)
-                ViewModel.GetSpeakersCommand.Execute(null);
         }
     }
 }

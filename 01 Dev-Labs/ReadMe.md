@@ -298,3 +298,129 @@ GetSpeakersCommand = new Command(
                 () => !IsBusy);
 ```
 
+## Creating UI in XAML & DataBinding
+
+It is now finally time to build out our first Xamarin.Forms user interface in the **Views/SpeakersPage.xaml**
+
+### SpeakersPage.xaml
+
+In this page we will add an `AbsoluteLayout` to the page and add controls to it. Between the `ContentPage` tags add the following:
+
+```xml
+<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+</AbsoluteLayout>
+```
+
+We will use a ListView that binds to the Speakers collection to display all of the items. We can use a special property called *x:Name=""* to name any control:
+
+```xml
+<StackLayout
+      AbsoluteLayout.LayoutFlags="All"
+      AbsoluteLayout.LayoutBounds="0,0,1,1">
+    <ListView x:Name="ListViewSpeakers"
+                ItemsSource="{Binding Speakers}">
+            <!--Add ItemTemplate Here-->
+    </ListView>
+</StackLayout>
+```
+
+We still need to describe what each item looks like, and to do so, we can use an ItemTemplate that has a DataTemplate with a specific View inside of it. Xamarin.Forms contains a few default Cells that we can use, and we will use the **ImageCell** that has an image and two rows of text.
+
+Replace <!--Add ItemTemplate Here--> with: 
+
+```xml
+<ListView.ItemTemplate>
+    <DataTemplate>
+        <ImageCell Text="{Binding Name}"
+                    Detail="{Binding Title}"
+                    ImageSource="{Binding Avatar}"/>
+    </DataTemplate>
+</ListView.ItemTemplate>
+```
+Under the `ListView` we can display a loading bar when we are gathering data from the server. We can use an ActivityIndicator to do this and bind to the IsBusy property we created:
+
+```xml
+<StackLayout IsVisible="{Binding IsBusy}"
+                     Padding="32"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+      <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+    </StackLayout>
+```
+
+We can take two strategies to initiate the retrieval of data from the server
+
+* Provide a Sync Button (load data on demand) or
+* Load them when the view appears
+
+#### Sync Button
+Add a `ToolBarButton` to the page and bind the `Command` property to the `GetSpeakersCommand`. The command takes the place of a clicked handler and will be executed whenever the user taps the button. Add the below code within the `ContentPage` tags.
+
+```xml
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Sync" Command="{Binding GetSpeakersCommand}" />
+  </ContentPage.ToolbarItems>
+```
+
+#### Load data in `OnAppearing()` method
+
+Open **SpeakersPage.xaml.cs** and add the following code inside `OnAppearing()` method below the line `base.OnAppearing()`
+
+```csharp
+if (ViewModel.Speakers.Count == 0)
+     ViewModel.GetSpeakersCommand.Execute(null);
+```
+
+### DataBinding
+Finally, for the view to bind to data we need to attach the **SpeakersViewModel** to the `BindingContext` of the View. Add this code below the `<ContentPage.ToolbarItems></ContentPage.ToolbarItems>`
+
+```xml
+  <ContentPage.BindingContext>
+    <vm:SpeakersViewModel/>
+  </ContentPage.BindingContext>
+```
+
+The above code ensures that the command is executed only once. This will help in not hitting the server each time the View Appears on screen.
+
+Xamarin.Forms will automatically download, cache, and display the image from the server.
+
+### Add the SpeakersPage to the MainPage
+
+Since our MainPage is a **TabbedPage**, we will add the SpeakersPage as a Child of it. Open **App.Xaml.cs** and within the **constructor** add this code:
+
+```csharp
+var speakersPage = new NavigationPage(new SpeakersPage()) { Title = "Speakers" };
+```
+
+And, add **speakersPage** to the **MainPage**
+
+```csharp
+mainPage.Children.Add(speakersPage);
+```
+
+Final code should look like this:
+
+```csharp
+        public App()
+        {
+            InitializeComponent();
+
+            var mainPage = new TabbedPage();
+            var sessionsPage = new NavigationPage(new SessionsPage()) { Title = "Sessions" };
+            var speakersPage = new NavigationPage(new SpeakersPage()) { Title = "Speakers" };
+            var aboutPage = new NavigationPage(new AboutPage()) { Title = "About" };
+
+            mainPage.Children.Add(sessionsPage);
+            mainPage.Children.Add(speakersPage);
+            mainPage.Children.Add(aboutPage);
+
+
+            MainPage = mainPage;
+        }
+```
+
+### Run the App!
+
+Hey! You just created the SpeakersPage, pulled the data from the internet and bound to the view.
+
