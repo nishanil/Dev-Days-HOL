@@ -372,6 +372,8 @@ if (ViewModel.Speakers.Count == 0)
      ViewModel.GetSpeakersCommand.Execute(null);
 ```
 
+The above code ensures that the command is executed only once. This will help in not hitting the server each time the View Appears on screen.
+
 ### DataBinding
 Finally, for the view to bind to data we need to attach the **SpeakersViewModel** to the `BindingContext` of the View. Add this code below the `<ContentPage.ToolbarItems></ContentPage.ToolbarItems>`
 
@@ -380,8 +382,6 @@ Finally, for the view to bind to data we need to attach the **SpeakersViewModel*
     <vm:SpeakersViewModel/>
   </ContentPage.BindingContext>
 ```
-
-The above code ensures that the command is executed only once. This will help in not hitting the server each time the View Appears on screen.
 
 Xamarin.Forms will automatically download, cache, and display the image from the server.
 
