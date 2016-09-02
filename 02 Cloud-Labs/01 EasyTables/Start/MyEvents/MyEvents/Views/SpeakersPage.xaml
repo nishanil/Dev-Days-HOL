@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:vm="clr-namespace:MyEvents.ViewModels;assembly=MyEvents"
+             x:Class="MyEvents.Views.SpeakersPage"
+             Title="{Binding Title}"
+             x:Name="SpeakersPage">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Sync" Clicked="OnSyncClicked" />
+  </ContentPage.ToolbarItems>
+  <ContentPage.BindingContext>
+    <vm:SpeakersViewModel/>
+  </ContentPage.BindingContext>
+  <ContentPage.Content>
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <StackLayout
+        AbsoluteLayout.LayoutFlags="All"
+        AbsoluteLayout.LayoutBounds="0,0,1,1">
+        <ListView ItemsSource="{Binding Speakers}"
+                  VerticalOptions="FillAndExpand"
+                  HasUnevenRows="true"
+                  ItemSelected="OnItemSelected"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsPullToRefreshEnabled="true"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  CachingStrategy="RecycleElement"
+                  x:Name="SpeakersListView">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ImageCell Text="{Binding Name}"
+                         Detail="{Binding Title}"
+                         ImageSource="{Binding Avatar}"/>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+
+        </ListView>
+      </StackLayout>
+
+    </AbsoluteLayout>
+  </ContentPage.Content>
+</ContentPage>
