@@ -25,9 +25,7 @@ namespace MyEvents.Droid.Renderers
 
             if (Control != null)
             {
-                //var speakeIcon = Forms.Context.Resources.GetDrawable();
                 Control.SetCompoundDrawablesWithIntrinsicBounds(0, Resource.Drawable.speakerphone, 0, 0);
-                
             }
         }
     }

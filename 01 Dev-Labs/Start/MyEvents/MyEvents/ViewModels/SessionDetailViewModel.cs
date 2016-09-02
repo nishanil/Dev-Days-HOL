@@ -44,7 +44,7 @@ namespace MyEvents.ViewModels
 
             SpeakCommand = new Command(()=>
             {
-                DependencyService.Get<ITextToSpeech>().Speak($"Session {SessionName} presented by {SpeakerName} is on {Time}");
+                // add DependencyService call here
             });
         }
     }

@@ -8,6 +8,6 @@ namespace MyEvents
 {
     public interface ITextToSpeech
     {
-        void Speak(string text);
+        // Define the Speak method
     }
 }

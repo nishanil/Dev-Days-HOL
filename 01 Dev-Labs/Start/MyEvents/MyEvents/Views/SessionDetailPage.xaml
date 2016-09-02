@@ -31,19 +31,15 @@
           </Label.FormattedText>
         </Label>
         <Label Text="{Binding Abstract}" />
-          
-        <!--<Button Margin="0,10,0,0"
+        
+        <!-- Comment this when SpeakButton is used -->
+        <Button Margin="0,10,0,0"
                         Text="Speak"
                         BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" Command="{Binding SpeakCommand}"/>-->
-        <local:SpeakButton
+                        TextColor="White" Command="{Binding SpeakCommand}"/>
+        <!--<local:SpeakButton
                Margin="0,10,0,0"
-                        Text="Speak" Command="{Binding SpeakCommand}" />
-        
-        <!--<Button Margin="0,10,0,0"
-                Text="Add to Favorite"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="White"/> -->
+                        Text="Speak" Command="{Binding SpeakCommand}" />-->
       </StackLayout>
     </ScrollView>
   </Grid>

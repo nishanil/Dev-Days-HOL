@@ -475,11 +475,121 @@ Until now, we wrote every line of code in Portable Class Library (MyEvents) that
 
 ### Device.OnPlatform
 
-In iOS, Tabs require icons to 
+In iOS, Tabs can display icons along with the Title. In our app, since this requriement is specific to iOS, we will use the `Device.OnPlatform` method to set the icons within the shared code.
+
+Add this code in the constructor of the **App.xaml.cs**
+
+```chsarp
+Device.OnPlatform(iOS: () => {
+    sessionsPage.Icon = "tab_feed.png";
+    speakersPage.Icon = "tab_person.png";
+    aboutPage.Icon = "tab_about.png";
+
+});
+```
+
+Resulting page will display the icons in the Tabs as shown below.
+
+[Image]
 
 ### DependencyService
+We will use the native Text to Speech APIs on every platform to read out the text for the users. Since each platform provides its own APIs for **Text to Speech**, we will use the `DependencyService` to invoke the platform implementation from shared code.
+
+First, create the interface `ITextToSpeech` and define `Speak()` method in it inside the PCL project. Open **MyEvents\ITextToSpeech.cs** file andd add this code
+
+```csharp
+public interface ITextToSpeech
+{
+    void Speak(string text);
+}
+```
+Open the **TextToSpeech.cs** in the Android project **MyEvents.Droid** and add this code
+
+```csharp
+public class TextToSpeechImplementation : Java.Lang.Object, ITextToSpeech, TextToSpeech.IOnInitListener
+{
+    TextToSpeech speaker;
+    string toSpeak;
+
+    public TextToSpeechImplementation() { }
+
+    public void Speak(string text)
+    {
+        var ctx = Forms.Context; // useful for many Android SDK features
+        toSpeak = text;
+        if (speaker == null)
+        {
+            speaker = new TextToSpeech(ctx, this);
+        }
+        else
+        {
+            var p = new Dictionary<string, string>();
+            speaker.Speak(toSpeak, QueueMode.Flush, p);
+        }
+    }
+
+    #region IOnInitListener implementation
+    public void OnInit(OperationResult status)
+    {
+        if (status.Equals(OperationResult.Success))
+        {
+            var p = new Dictionary<string, string>();
+            speaker.Speak(toSpeak, QueueMode.Flush, p);
+        }
+    }
+    #endregion
+}
+```
+Uncomment the `assembly` attribute (above the  namespace) in the same file.
+
+```csharp
+[assembly: Xamarin.Forms.Dependency(typeof(TextToSpeechImplementation))]
+```
+This attribute registers the class as an implementation of the ITextToSpeech interface, which means that `DependencyService.Get<ITextToSpeech>()` can be used in the shared code to create an instance of it.
+
+For convinience, the `TextToSpeech` implementation for iOS and UWP have already been added to their respective projects. You can refer them for implementation details. For ios, open **MyEvents.iOS/TextToSpeech.cs** and **MyEvents.UWP/TextToSpeech.cs** for UWP.
+
+Finally, Call the platform implementations in the Shared Code using DependencyService. Open **MyEvents\SessionDetailViewModel** and in the **SpeakCommand** Initialization add this code.
+
+```csharp
+DependencyService.Get<ITextToSpeech>().Speak($"Session {SessionName} presented by {SpeakerName} is on {Time}");
+```
+
+### Run the App!
+
+Run the app on all available platforms and hit the speak button.
 
 ### CustomRenderers
 
+`CustomRenderers` can be used for small styling changes or sophisticated platform-specific layout. In this app, we will create a custom button called `SpeakButton` and add a Custom Renderer in Android project to display an image alongside the button text.
+
+Open the ***MyEvents/Controls/SpeakButton.cs* and notice the empty class that derives from the existing `Button` class. This is a placeholder class to add `BindableProperty`s for your control and extend them as you wish to. We will keep it simple for this lab, so leave it empty.
+
+Open the Android project's platform implementation **MyEvents.Droid/Renderers/SpeakButtonRenderer.cs** and override the `OnElementChanged()` method to add an image to the button. Here's the code
+
+```csharp
+protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Button> e)
+{
+    base.OnElementChanged(e);
+
+    if (Control != null)
+    {
+        //var speakeIcon = Forms.Context.Resources.GetDrawable();
+        Control.SetCompoundDrawablesWithIntrinsicBounds(0, Resource.Drawable.speakerphone, 0, 0);
+        
+    }
+}
+```
+Now, open the **MyEvents\Views\SessionDetailPage.xaml** and replace the existing button for **Speak** with the **SpeakButton** code below.
+
+```xml
+<local:SpeakButton
+        Margin="0,10,0,0"
+        Text="Speak" Command="{Binding SpeakCommand}" />
+```
+Build and run the Android project to see the button change. iOS and Android projects do not have custom implementations currently so they fall back to displaying regular buttons of the platform. Feel free to modify those custom renderers and add your creativity to them.
+
 ## Wrapping Up!
 
+
+We did great! Our first Xamarin.Forms app with beautiful UI pulling the data from a rest end point with few platform customizations came out so well. In the next module, we will look at building a scalable backend in Azure and consuming them in an app.
