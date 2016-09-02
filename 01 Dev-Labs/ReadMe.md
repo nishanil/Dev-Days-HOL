@@ -547,7 +547,7 @@ Uncomment the `assembly` attribute (above the  namespace) in the same file.
 ```
 This attribute registers the class as an implementation of the ITextToSpeech interface, which means that `DependencyService.Get<ITextToSpeech>()` can be used in the shared code to create an instance of it.
 
-For convinience, the `TextToSpeech` implementation for iOS and UWP have already been added to their respective projects. You can refer them for implementation details. For ios, open **MyEvents.iOS/TextToSpeech.cs** and **MyEvents.UWP/TextToSpeech.cs** for UWP.
+For convinience, the `TextToSpeech` implementation for iOS and UWP have already been added to their respective projects. You can refer them for implementation details. For iOS, open **MyEvents.iOS/TextToSpeech.cs** and **MyEvents.UWP/TextToSpeech.cs** for UWP.
 
 Finally, Call the platform implementations in the Shared Code using DependencyService. Open **MyEvents\SessionDetailViewModel** and in the **SpeakCommand** Initialization add this code.
 
@@ -574,7 +574,6 @@ protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.B
 
     if (Control != null)
     {
-        //var speakeIcon = Forms.Context.Resources.GetDrawable();
         Control.SetCompoundDrawablesWithIntrinsicBounds(0, Resource.Drawable.speakerphone, 0, 0);
         
     }
