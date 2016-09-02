@@ -490,7 +490,7 @@ Device.OnPlatform(iOS: () => {
 
 Resulting page will display the icons in the Tabs as shown below.
 
-[Image]
+![iOS-Tabs](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/iOS-Tab-icons.png?token=AC9rtoWVK4eOTAWDV69qFcZyy9veMPJKks5X0mezwA%3D%3D)
 
 ### DependencyService
 We will use the native Text to Speech APIs on every platform to read out the text for the users. Since each platform provides its own APIs for **Text to Speech**, we will use the `DependencyService` to invoke the platform implementation from shared code.
