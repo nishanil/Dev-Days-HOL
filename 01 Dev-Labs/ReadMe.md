@@ -2,7 +2,7 @@
 
 In this module, we will be building our first [Xamarin.Forms](http://xamarin.com/forms) app leveraging Visual Studio and targeting iOS, Android, and UWP platforms. The app that we will be building is called **MyEvents** that gets Session and Speaker information from a rest endpoint and displays them beautifully in a tabular UI.
 
-[Image]
+![MyEvents](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/DevDaysHol.png?token=AC9rtpBmFfQKj9epUgPmYpJ8IBqxXsgkks5X0l_BwA%3D%3D)
 
 ## Overview
 
