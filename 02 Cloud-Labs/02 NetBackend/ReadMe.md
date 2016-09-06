@@ -15,7 +15,7 @@ This lab will cover
 
 In the **Start** folder of this repository ontains two folders `Server` and `Client`. For ease of use, the `Server` project has been already added to the `Client`'s solution. Navigate to the  `Client` folder and open the **MyEvents.sln** solution. This project has partially completed code which we will be completing as part of this excersise.
 
-![Solution](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/01%20Dev-Labs/screenshots/Solution-Overview.png?token=AC9rtsR3IlM7k__1H_Rdwfg34JDtMWeEks5X0Z4YwA%3D%3D)
+![Solution](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/netbackend-Solution.png?token=AC9rtni5Ih59NB5ALtxYQ4CfGxVMehSNks5X2HGjwA%3D%3D)
 
 This solution now contains 5 projects
 
@@ -87,11 +87,11 @@ Head to [http://portal.azure.com](http://portal.azure.com) and register for an a
 
 Once you are in the portal select the **+ New** button and search for **mobile apps** and you will see the results as shown below. Select **Mobile Apps**. Note: Previously, for EasyTables we used **Quickstart**, here: We are not.
 
-![Azure Mobile Apps Search](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/MobileApps-Search.png?token=AC9rtgKhTbXOczkQYxn2t9D-BmP2e2qvks5X0ppnwA%3D%3D)
+![Azure Mobile Apps Search](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-Search.png?token=AC9rtoRNfjRbJg6dvKw6vxzl1uOeq67Iks5X2HINwA%3D%3D)
 
 The Quickstart blade will open, select **Create**
 
-![Create quickstart](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/MobileApps-Creaate.png?token=AC9rtieOmloIyWX77Hgp-sjFz-zmmp1Aks5X0ptzwA%3D%3D)
+![Create quickstart](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-Search-Select.png?token=AC9rtvb9gvbvgz0YuIXBSpwK_oo8vWS-ks5X2HIlwA%3D%3D)
 
 This will open a settings blade with 4 settings:
 
@@ -155,12 +155,15 @@ That's it! The database is ready for consumption in our apps.
 
 Now from your Solution, right click on **MyEvents.Server** and click on **Publish**
 
-![]()
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-Publish-0.png?token=AC9rto-q-9VxppuOXXhdbv7bx0abRoeiks5X2HJowA%3D%3D)
 
 Select **Microsoft Azure App Service** and login to your account. Then select your **Subscription**, **ResourceGroup** and **App Service**
-![]()
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-Publish-1.png?token=AC9rtojq3ll7m3rNHrAbkDiOk5BJIrKYks5X2HKIwA%3D%3D)
 
 Now, valdiate your connection and hit **Publish**. Once it has successfully published, test the Endpoint.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-Publish-3.png?token=AC9rtu92SByUVGTL2cBkd3AHoL_DMqZvks5X2HLDwA%3D%3D)
 
 ### Test the Endpoint
 
@@ -284,19 +287,21 @@ Note that `Feedback` class inherits from `EntityData` class which is the base cl
 
 ### Create a FeedbackController
 
-Time to add some TableControllers! These will serve as the RESTful endpoints that our mobile app hits in order to receive data or other information from the backend. Right-click the **MyEvents.Server/Controllers** folder and select **Add->Controller**.
+Time to add some TableControllers! These will serve as the RESTful endpoints that our mobile app hits in order to receive data or other information from the backend. Right-click the **MyEvents.Server/Controllers** folder and select **Add->New Scaffolder Item...**.
 
-![]()
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-AddController.png?token=AC9rtomCpRWdaaO7id6H4yBpQ0x1dlSEks5X2HM7wA%3D%3D)
 
 Select the Azure Mobile Apps Table Controller, as seen below, then click **Add**
 
-![]()
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-AddController-2.png?token=AC9rtowB8y3TZ0JiLeUk5abjt0ygpezYks5X2HODwA%3D%3D)
 
 Set the Model Class to `Feedback` and the Data context class to `MyEventsContext` and controller name to `FeedbackController`. Click Add. This will "scaffold" out a new TableController for us and configure some additional settings.
 
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-AddController-3.png?token=AC9rtottuH862KFcO5PAy1Tatl0EipEpks5X2HOHwA%3D%3D)
+
 #### Authorize incoming Requests
 
-Since the feedbacks given are user specific, we have to Authorize the `Users` to update or delete the data. To do this on server, we have to add an attribute `[Authorize\` to the web methods. This will restrict the server from unwanted usage of the API. Later in the lab, we will look at how to authorize users from the client code. For now, add `[Authorize]` attribute to your methods. Here's the full source code of `FeedbackController` class.
+Since the feedbacks given are user specific, we have to Authorize the `Users` to update or delete the data. To do this on server, we have to add an attribute `[Authorize]` to the web methods. This will restrict the server from unwanted usage of the API. Later in the lab, we will look at how to authorize users from the client code. For now, add `[Authorize]` attribute to your methods. Here's the full source code of `FeedbackController` class.
 
 ```csharp
 public class FeedbackController : TableController<Feedback>
@@ -362,25 +367,29 @@ In this client apps, let's keep it simple and add some Facebook Authentication t
 * (Optional) If you have not already registered, click **Apps > Register as a Developer**, then accept the policy and follow the registration steps.
 * On the top right corner, Under **My Apps** choose **Add a New App**
 * Chosse **Website** as the platform
-! []()
-* Skip and Create App ID. 
-![]()
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/Facebook-1.png?token=AC9rtvI7wlCcvCzRyFRW2HZ4WFBBEG4eks5X2HPcwA%3D%3D)
+
+* Skip and Create App ID
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/Facebook-2.png?token=AC9rtkSgTH-sXCtX1bhhsI9Cb8mFNzdYks5X2HQEwA%3D%3D)
+
 * In Display Name, type a unique name for your app, type your Contact Email, choose a Category for your app, then click Create App ID and complete the security check. This takes you to the developer dashboard for your new Facebook app.
 * Under "Facebook Login," click Get Started. Add your application's Redirect URI to Valid OAuth redirect URIs, then click Save Changes.
 ```
 Your redirect URI is the URL of your application appended with the path, /.auth/login/facebook/callback. For example, https://<yourappservicename>.azurewebsites.net/.auth/login/facebook/callback. Make sure that you are using the HTTPS scheme.
 ```
-*In the left-hand navigation, click Settings. On the App Secret field, click Show, provide your password if requested, then make a note of the values of App ID and App Secret. You use these in the next step to configure your application in Azure.
+* In the left-hand navigation, click Settings. On the App Secret field, click Show, provide your password if requested, then make a note of the values of App ID and App Secret. You use these in the next step to configure your application in Azure.
 
 #### Configure your Portal with Facebook Authentication
 
 Head to your dashboard, Select **Authentication/Authorization** and enable **App Service Authentication** and select **Allow request(no action)** - This setting will apply to all Controllers. This will help `Session` and `Speaker` data to flow in without Authentication.
 
-![]()
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-Auth-1.png?token=AC9rtqTx0PcPT-gjYyQRyANcp7eDc2JMks5X2HRtwA%3D%3D)
 
 Choose **Facebook** as the **Authentication Provider** and provide the **App ID** and **App Secret** which you copied from the previous step.
 
-![]()
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/NetBackend-Auth-2.png?token=AC9rtjQAK0hz4adDIz78AxE1IV7TORilks5X2HRxwA%3D%3D)
 
 ### Create UI to enter Session Feedback
 
