@@ -1,7 +1,9 @@
 ## Dev Days HOL - Cloud
 
-Xamarin Dev Days provide attendees with an intense, hands-on learning experience. Spend the morning exploring mobile development with sessions from Xamarin, our technology partners, and members of your local developer community, then roll up your sleeves for an afternoon dedicated to diving into code.
+Creating a great connected experience across multiple platforms is an essential element of great mobile applications. However, what happens when there is little to no connectivity—such as on an airplane or in some foreign countries? Does your mobile app effortlessly synchronize data when the device gets back online? Although users expect and deserve this type of behavior, maintaining your own cloud backend and APIs are time-consuming and error-prone. Fear Not! With Azure Mobile Apps and it's client SDKs on iOS, Android, & Windows you can solve this problem effortlessly. 
 
-Each Xamarin Dev Days is unique, but you’ll always walk away with a better understanding of how you can build, test, and monitor native iOS, Android, and Windows apps with Xamarin.
+Cloud Labs are split into two Modules -
+* [Easy Tables (no code backend)] (https://github.com/nishanil/Dev-Days-HOL/tree/master/02%20Cloud-Labs/01%20EasyTables)
+* [.NET Backend](https://github.com/nishanil/Dev-Days-HOL/tree/master/02%20Cloud-Labs/02%20NetBackend)
 
-Inside this repo you will find all of the presentations, demos, and hands on labs that you will experience at Xamarin Dev Days!
+Run each of it to learn how to unleash the power of Azure Mobile Apps.
