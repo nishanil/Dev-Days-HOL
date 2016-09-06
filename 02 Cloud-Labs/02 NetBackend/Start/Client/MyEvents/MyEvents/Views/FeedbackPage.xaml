@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyEvents;assembly=MyEvents"
+            
+             x:Class="MyEvents.Views.FeedbackPage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:RatingConverter x:Key="RatingConverter" />
+      <Style TargetType="Label" x:Key="LabelSmallFontStyle">
+        <Setter Property="TextColor" Value="{StaticResource Primary}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ScrollView>
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <StackLayout Margin="40">
+        <Label Text="FEEDBACK" TextColor="{StaticResource Primary}" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Margin="10" Text="{Binding CurrentSession.Title}" FontSize="24" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+        <Label Margin="10" TextColor="{StaticResource LightTextColor}" Text="{Binding CurrentSession.Presenter}" FontSize="12" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+        <Label Style="{StaticResource LabelSmallFontStyle}" Text="WHAT&apos;S YOUR RATING?"/>
+        <StackLayout Orientation="Horizontal" HeightRequest="40" VerticalOptions="Center" WidthRequest="300" HorizontalOptions="Center">
+          <Grid>
+            <Grid.Behaviors>
+              <local:RatingBehavior x:Name="starOne" GroupName="myStar"/>
+            </Grid.Behaviors>
+            <Image x:Name="starBlankOne"
+                    Source="{local:ImageResource MyEvents.Images.star_outline.png}" />
+
+            <Image x:Name="starSelectedOne"
+                    Source="{local:ImageResource MyEvents.Images.star_selected.png}"
+                    IsVisible="{Binding Source={x:Reference starOne},
+                                    Path=IsStarred}"/>
+          </Grid>
+          <Grid >
+            <Grid.Behaviors>
+              <local:RatingBehavior x:Name="starTwo" GroupName="myStar"/>
+            </Grid.Behaviors>
+            <Image x:Name="starBlankTwo"
+                    Source="{local:ImageResource MyEvents.Images.star_outline.png}" />
+
+            <Image x:Name="starSelectedTwo"
+                    Source="{local:ImageResource MyEvents.Images.star_selected.png}"
+                    IsVisible="{Binding Source={x:Reference starTwo},
+                                    Path=IsStarred}"/>
+          </Grid>
+          <Grid >
+            <Grid.Behaviors>
+              <local:RatingBehavior x:Name="starThree" GroupName="myStar"/>
+            </Grid.Behaviors>
+            <Image x:Name="starBlankThree"
+                    Source="{local:ImageResource MyEvents.Images.star_outline.png}" />
+
+            <Image x:Name="starSelectedThree"
+                    Source="{local:ImageResource MyEvents.Images.star_selected.png}"
+                    IsVisible="{Binding Source={x:Reference starThree},
+                                    Path=IsStarred}"/>
+          </Grid>
+          <Grid >
+            <Grid.Behaviors>
+              <local:RatingBehavior x:Name="starFour" GroupName="myStar"/>
+            </Grid.Behaviors>
+            <Image x:Name="starBlankFour"
+                    Source="{local:ImageResource MyEvents.Images.star_outline.png}" />
+
+            <Image x:Name="starSelectedFour"
+                    Source="{local:ImageResource MyEvents.Images.star_selected.png}"
+                    IsVisible="{Binding Source={x:Reference starFour},
+                                    Path=IsStarred}"/>
+          </Grid>
+          <Grid >
+            <Grid.Behaviors>
+              <local:RatingBehavior x:Name="starFive" GroupName="myStar"/>
+            </Grid.Behaviors>
+            <Image x:Name="starBlankFive"
+                    Source="{local:ImageResource MyEvents.Images.star_outline.png}" />
+
+            <Image x:Name="starSelectedFive"
+                    Source="{local:ImageResource MyEvents.Images.star_selected.png}"
+                    IsVisible="{Binding Source={x:Reference starFive},
+                                    Path=IsStarred}"/>
+          </Grid>
+        </StackLayout>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+          <Label FontSize="18" Style="{StaticResource LabelSmallFontStyle}" Text="{Binding Source={x:Reference starFive},
+                                    Path=Rating, Converter={StaticResource RatingConverter}}" ></Label>
+        </StackLayout>
+        <Label Style="{StaticResource LabelSmallFontStyle}" Text="TELL US WHAT WENT RIGHT AND WHAT DIDN&apos;T"/>
+        <Editor HeightRequest="150" Text="{Binding FeedbackText, Mode=TwoWay}"  />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10" >
+          <Button x:Name="SaveButton" WidthRequest="150"  BackgroundColor="{StaticResource Primary}" TextColor="White" Text="Send"
+                  Command="{Binding SaveCommand}"
+                  CommandParameter="{Binding Source={x:Reference starFive},Path=Rating}" />
+          <Button x:Name="CloseButton" WidthRequest="150"  BackgroundColor="{StaticResource LightBackground}" TextColor="Black" Text="Close" Command="{Binding CloseCommand}"/>
+        </StackLayout>
+      </StackLayout>
+      <StackLayout IsVisible="{Binding IsBusy}"
+                   Padding="32"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+      </StackLayout>
+
+    </AbsoluteLayout>
+  </ScrollView>
+</ContentPage>

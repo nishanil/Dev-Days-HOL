@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyEvents.Views.SpeakerDetailPage"
+             Title="{Binding Name}">
+  <ScrollView Padding="10">
+    <StackLayout Spacing="10">
+      <Image Source="{Binding Avatar}" HeightRequest="200" WidthRequest="200"/>
+
+      <Entry Text="{Binding Title, Mode=OneWay}"
+              TextColor="Purple"
+              x:Name="EntryTitle"/>
+      <Label Text="{Binding Title}" TextColor="Purple"/>
+      <Label Text="{Binding Description}"/>
+      <Button Text="Save"  BackgroundColor="{StaticResource Primary}" Clicked="ButtonSave_Clicked"/>
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

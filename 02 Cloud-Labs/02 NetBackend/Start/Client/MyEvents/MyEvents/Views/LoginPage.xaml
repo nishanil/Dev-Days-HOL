@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyEvents.Views.LoginPage">
+  <ScrollView>
+   <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+      <Image Source="person.png" HeightRequest="96" WidthRequest="96"></Image>
+      <Button Margin="10,20,10,0" Text="LOGIN WITH FACEBOOK" Command="{Binding LoginCommand}" TextColor="White" BackgroundColor="{StaticResource Primary}"></Button>
+      <Label Margin="10" TextColor="{StaticResource LightTextColor}" Text="We won&apos;t post anything. Promise." FontSize="12" />
+    </StackLayout>
+  </ScrollView>
+</ContentPage>
