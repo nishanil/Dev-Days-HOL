@@ -24,13 +24,11 @@
                   IsPullToRefreshEnabled="true"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                   CachingStrategy="RecycleElement"
-				  AutomationId="SpeakerList"
                   x:Name="SpeakersListView">
           <ListView.ItemTemplate>
             <DataTemplate>
               <ImageCell Text="{Binding Name}"
                          Detail="{Binding Title}"
-						 AutomationId = "SpeakerCell"
                          ImageSource="{Binding Avatar}"/>
             </DataTemplate>
           </ListView.ItemTemplate>
