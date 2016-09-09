@@ -88,7 +88,7 @@
                                     Path=Rating, Converter={StaticResource RatingConverter}}" ></Label>
         </StackLayout>
         <Label Style="{StaticResource LabelSmallFontStyle}" Text="TELL US WHAT WENT RIGHT AND WHAT DIDN&apos;T"/>
-        <Editor HeightRequest="150" Text="{Binding FeedbackText, Mode=TwoWay}"  />
+        <Editor HeightRequest="150" AutomationId="FeedbackText" Text="{Binding FeedbackText, Mode=TwoWay}"  />
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10" >
           <Button x:Name="SaveButton" WidthRequest="150"  BackgroundColor="{StaticResource Primary}" TextColor="White" Text="Send"
                   Command="{Binding SaveCommand}"

@@ -15,11 +15,11 @@
         <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
           <Label Text="{Binding SessionName}" TextColor="White" FontAttributes="Bold" FontSize="22"/>
           <Label FontSize="16" Text="{Binding SpeakerName}" TextColor="White"/>
-          <Label FontSize="16" Text="{Binding Time}" TextColor="White"/>        
+          <Label FontSize="16" Text="{Binding Time}" TextColor="White"/>
         </StackLayout>
       </ContentView>
     </StackLayout>
-    <ScrollView Grid.Row="1">
+    <ScrollView Grid.Row="1" AutomationId="SessionDetails">
       <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
         <Label FontSize="22">
           <Label.FormattedText>
@@ -31,7 +31,7 @@
           </Label.FormattedText>
         </Label>
         <Label Text="{Binding Abstract}" />
-          
+
         <Button Margin="0,10,0,0"
                         Text="Speak"
                         BackgroundColor="{StaticResource Primary}"
@@ -40,7 +40,8 @@
                Margin="0,10,0,0"
                         Text="Speak" Command="{Binding SpeakCommand}" />-->
         <local:FeedbackButton x:Name="FeedBackButton"
-          Margin="0,10,0,0" 
+          Margin="0,10,0,0"
+               AutomationId="Feedback" 
           Text="Give Feedback"
         Clicked="FeedBackButton_Clicked"/>
         <!--<Button Margin="0,10,0,0"
