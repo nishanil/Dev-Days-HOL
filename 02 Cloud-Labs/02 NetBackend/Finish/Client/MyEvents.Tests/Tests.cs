@@ -21,9 +21,6 @@ namespace MyEvents.UITests
             // and select the app projects that should be tested.
             app = ConfigureApp
                 .Android
-                // TODO: Update this path to point to your Android app and uncomment the
-                // code if the app is not included in the solution.
-                // .ApkFile(@"C:\Users\Prashant\Documents\GitHub\Dev-Days-HOL\02 Cloud-Labs\02 NetBackend\Finish\Client\MyEvents\MyEvents.Droid\bin\Release\MyEvents.Droid.apk")
                 .StartApp();
         }
 
@@ -61,6 +58,7 @@ namespace MyEvents.UITests
             LoginToFeedback();
 
             app.WaitForElement("Authenticate");
+            app.Screenshot("Facebook login page");
         }
 
         [Test]
@@ -79,6 +77,7 @@ namespace MyEvents.UITests
             if (continueButtone.Length > 0)
             {
                 app.Query(c => c.Css("Button#u_0_a"));
+                app.Screenshot("Continue with authentication");
             }
 
             app.WaitForElement("FEEDBACK", timeout:TimeSpan.FromSeconds(45));
@@ -115,7 +114,29 @@ namespace MyEvents.UITests
             app.WaitForElement(a => a.Button("Feedback"));
         }
 
-        private void LoginToFeedback()
+        [Test]
+        public void LoadSpeakersList()
+        {  
+            app.Tap("Speakers");
+            app.ScrollToVerticalEnd("SpeakerList");
+        }
+
+        [Test]
+        public void GivenASpeakersOnSelectingOneDiscloseTheDetails()
+        {
+            app.Tap("Speakers");
+            app.Tap(c => c.Class("TextView"));
+            app.WaitForElement("SpeakerImage");
+        }
+
+        [Test]
+        public void WhenSelectedAboutTabThenLoadAboutPage()
+        {
+            app.Tap("About");
+            app.WaitForElement("Learn More");
+        }
+
+        void LoginToFeedback()
         {
             app.WaitForElement("SessionCell");
             app.Tap("SessionCell");
@@ -123,6 +144,7 @@ namespace MyEvents.UITests
             app.ScrollDownTo(c => c.Marked("Feedback"));
             app.Tap("Feedback");
             app.Tap("Login");
+            app.Screenshot("Login page");
         }
     }
 }
