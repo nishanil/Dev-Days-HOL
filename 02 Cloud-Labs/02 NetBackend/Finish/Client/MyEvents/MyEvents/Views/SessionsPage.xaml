@@ -24,6 +24,7 @@
                   IsPullToRefreshEnabled="true"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                   CachingStrategy="RecycleElement"
+                  AutomationId="SessionsList"
                   x:Name="SessionsListView">
           <ListView.ItemTemplate>
             <DataTemplate>
@@ -40,6 +41,7 @@
                           />
                   <Label Text="{Binding Title}"
                          LineBreakMode="NoWrap"
+                         AutomationId="SessionCell"
                          Style="{DynamicResource ListItemTextStyle}"
                          FontSize="16"/>
                   <Label Text="{Binding Presenter}"
