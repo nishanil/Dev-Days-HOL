@@ -9,8 +9,8 @@ namespace MyEvents.UITests
     public class Tests
     {
         AndroidApp app;
-        const string UserName = "nishaniltest";
-        const string Password = "testPassword1";
+        const string UserName = "";
+        const string Password = "";
 
 
         [SetUp]
