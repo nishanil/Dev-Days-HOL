@@ -2,6 +2,8 @@
 
  In the previous module, we looked at creating a .NET APIs, creating database in the cloud and authenticating users. Continuous Integration (CI) is one of the key practices of DevOps. Visual Studio Team Services simplifies continuous integration for your applications for all platforms and all languages. VSTS let's you create and manage build processes that automatically compile and test your applications in the cloud or on premises, either on demand or as part of an automated continuous integration strategy. The CI build can also package the code so that it is ready for continuous deployment to test, QA or even Production environments. This module covers how to do that for the cross platform mobile applications. We will pick up the same code that we completed in the previous module, create repository, commit code, create build definitions & deploy to beta testers using HockeyApp.
 
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/AnyADeveloperAnyLanguage1.png) 
+
 ## Overview
 
 This lab will cover
@@ -110,3 +112,10 @@ Now, let's create some build definitions to compile the solution and package the
 1. When the build completes, you should see everything `Green`
 
     ![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Build-Complete.png)
+
+## Trigger a build by committing code to the repo
+
+> This is a task for you! Change some code in your repo. Open Visual Studio and change a few lines of code and `Commit and Sync`. Get back the VSTS dashboard and see if a build is automatically triggered.
+
+## Deploy Apps to Beta testers to HockeyApp
+
