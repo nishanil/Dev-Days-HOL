@@ -31,5 +31,10 @@ namespace MyEvents.Views
             await vm.UpdateSpeaker(speaker);
             await Navigation.PopAsync();
         }
+        private async void ButtonAnalyze_Clicked(object sender, EventArgs e)
+        {
+            var level = await EmotionService.GetAverageHappinessScoreAsync(this.speaker.Avatar);
+            await DisplayAlert("Happiness Level", EmotionService.GetHappinessMessage(level), "OK");
+        }
     }
 }
