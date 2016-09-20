@@ -20,7 +20,9 @@ namespace MyEvents.Cloud
 
         private AzureDataManager()
         {
-            Initialize();
+			if (App.IsMobileServiceConfigured)
+
+				Initialize();
         }
 
         public static AzureDataManager DefaultManager
