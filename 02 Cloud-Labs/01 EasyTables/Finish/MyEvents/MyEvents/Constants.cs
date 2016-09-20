@@ -9,6 +9,6 @@ namespace MyEvents
     public static class Constants
     {
         // Replace strings with your mobile services and gateway URLs.
-        public static string ApplicationURL = @"http://mughdemo.azurewebsites.net";
+        public static string ApplicationURL = @"https://devdayshol.azurewebsites.net";
     }
 }
