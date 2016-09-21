@@ -14,7 +14,7 @@ The Hands On Labs are broken down into 3 modules:
 * [02 DevOps-Labs - WIP]()
 
 ##Pre-Requisites
-* Visual Studio 2015 Community Edition (or higher)
+* Visual Studio 2015 Community Edition with latest Updates (or higher)
 * Xamarin
 * Visual Studio Android Emulator or Google Emulators
 * Azure subscription (for cloud labs)
