@@ -11,7 +11,7 @@ The Hands On Labs are broken down into 3 modules:
 * [02 Cloud-Labs - Building Cloud connected & Offline Sync Apps](https://github.com/nishanil/Dev-Days-HOL/tree/master/02%20Cloud-Labs)
   * [Create a no code backend with Easy Tables](https://github.com/nishanil/Dev-Days-HOL/tree/master/02%20Cloud-Labs/01%20EasyTables)
   * [Create a Scalable .NET Backend & Authenticate Users](https://github.com/nishanil/Dev-Days-HOL/tree/master/02%20Cloud-Labs/02%20NetBackend)
-* [02 DevOps-Labs - WIP]()
+* [02 DevOps-Labs - WIP](https://github.com/nishanil/Dev-Days-HOL/tree/master/03%20DevOps-Labs)
 
 ##Pre-Requisites
 * Visual Studio 2015 Community Edition with latest Updates (or higher)
