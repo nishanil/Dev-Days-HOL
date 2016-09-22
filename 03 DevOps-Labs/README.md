@@ -168,6 +168,75 @@ Go to HockeyApp and you should see your app being listed there.
 
 ![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/HockeyApp-FinalDash.png)
 
+#### Versioning Assemblies
+
+Android **.apks** are versioned based on the values set inside the **AndroidManifest.xml** file. 
+
+Two settings are available, and you should always define values for both of them:
+
+* `versionCode` — An integer used as an internal version number. 
+* `versionName` — A string used as the version number shown to users.
+
+ When releasing packages, it is best practice to version the package to match the build number so that it is easy to track. Since VSTS takes care of builds, its best to add a **Build Step** to update the manifest file with the running build number. To do do this, you need to install an extension from the VSTS marketplace 
+ first.
+
+##### Format Build number
+
+Since we rely on the build number to be the verion number for our apps, let's edit them to an appropriate format. We will later use a regex pattern to strip out the last digits to append to our version number.
+
+Go to **General** tab and edit the build number format to `1.0.0$(rev:.r)` and **Save**
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Version-Assemblies-4.png)
+
+##### Installing an Extension from the VSTS Marketplace
+
+>Note: You can always do this using a PowereShell script or a bat script. However, it's always a good practice to search for one in the marketplace.
+
+In the upper right corner of your VSTS dashboard, click the Basket icon and select **Browse Marketplace**.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Version-Assemblies-0.png)
+
+Search for `Version Assemblies` and install the `Colin's ALM Corner Build Tasks`
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Version-Assemblies.png)
+
+**Add VersionName Step**
+
+Now, click **Add Build Step** and add the `Version Assemblies` task and place it right before the build task.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Version-Assemblies-2.png)
+
+* Source Path: (browse to the `properties` folder right inside the droid project)
+* File Pattern: `AndroidManifest.xml`
+* Build Regex Pattern: `(?:\d+\.\d+\.\d+\.)(\d+)`
+* In the Advanced Section
+    * Build Regex Group Index: `0`
+    * Regex Replace Pattern: `versionName="\d+\.\d+\.\d+`
+    * Prefix for Replacements: `versionName="`
+* Edit build step name as `Update Version Name` for understanding
+
+**Add VersionCode Step**
+
+Click **Add Build Step** again and add the same `Version Assemblies` task and place it right after the `Update Version Name` task. 
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Version-Assemblies-3.png)
+
+* Source Path: (browse to the `properties` folder right inside the droid project)
+* File Pattern: `AndroidManifest.xml`
+* Build Regex Pattern: `(?:\d+\.\d+\.\d+\.)(\d+)`
+* In the Advanced Section
+    * Build Regex Group Index: `1`
+    * Regex Replace Pattern: `versionCode="\d+`
+    * Prefix for Replacements: `versionCode="`
+* Edit build step name as `Update Version Code` for understanding
+
+Save the steps & Queue a new build.
+
+That's it. When the build completes, head over to HockeyApp and check if the `versionName` and `versionCode` are updated accordingly.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Version-Assemblies-5.png)
+
+
 #### Test them on Device
 
 To test them on real devices, you need to install HockeyApp onto them. The steps here list how to install hockey app on an emulator, however, we recommend that you use your Android phone.
@@ -186,7 +255,10 @@ Once you login, Download the HockeyApp for Android.
 
 ![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-RegisterDevice-3.png)
 
+
 That's it. Now install the HockeyApp that was downloaded and run the app. Login with your credentials and you will see the MyEvents app being listed there. You can send this link to your beta testers and they will be notified whenever a new build happens.
+
+
 
 ### Great Reads
 
