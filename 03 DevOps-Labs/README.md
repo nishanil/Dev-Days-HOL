@@ -115,7 +115,83 @@ Now, let's create some build definitions to compile the solution and package the
 
 ## Trigger a build by committing code to the repo
 
-> This is a task for you! Change some code in your repo. Open Visual Studio and change a few lines of code and `Commit and Sync`. Get back the VSTS dashboard and see if a build is automatically triggered.
+> This is a task for you! Change some code in your repo. Open Visual Studio and change a few lines of code and `Commit and Sync`. Get back to VSTS dashboard and see if a build is automatically triggered.
 
-## Deploy Apps to Beta testers to HockeyApp
+## Deploy Apps to Beta testers through HockeyApp
+
+ HockeyApp is a service that enables mobile app developers to easily distribute apps to testers and get feedback from them. 
+ 
+ First things First, head over to [HockeyApp](https://www.hockeyapp.net/) and [sign up for free](https://rink.hockeyapp.net/users/sign_up).  You can use your Microsoft Account there.
+
+ We will get back to this dashboard to grab the **API Token** later.
+ 
+Let's install the HockeyApp VSTS extension, which will add new build steps to easily deploy to HockeyApp. [Navigate to this link](https://marketplace.visualstudio.com/items?itemName=ms.hockeyapp) and install the HockeyApp extension to your account. 
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-Install.png)
+
+Under our projects services in **settings**, we can also connect to HockeyApp to specify our API Token. Click on Settings 
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-Service-1.png)
+
+Under **Services** choose, create a **New Service Endpoint** and choose **HockeyApp**
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-Service-2.png)
+
+Now get back to your **HockeyApp Dashboard** anc create a new API Token from **Account Settings**
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-Service-3.png)
+
+Copy the **API Token** and add it the **Add new HockeyApp Connection** screen
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-Service-4.png)
+
+
+### Deploy Android Apps
+
+In this lab, we will focus on delivering Android apps to beta testers so let's Edit build definition for Android.
+
+Back in our build steps we can add the HockeyApp step under the Deploy category:
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Add-HockeyApp.png)
+
+Finally, provide the hockey app connection and the path of the **.apk**.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Deploy-HockeyApp.png)
+
+#### Queue a new build
+
+When the build completes you should see the deploy step **succeed**.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Deploy-HockeyApp-Build-Sucess.png)
+
+Go to HockeyApp and you should see your app being listed there.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/HockeyApp-FinalDash.png)
+
+#### Test them on Device
+
+To test them on real devices, you need to install HockeyApp onto them. The steps here list how to install hockey app on an emulator, however, we recommend that you use your Android phone.
+
+**Register Device**
+
+In the Hockey App dashboard, go to Account Settings and Click on the **Devices** and click on **Guided Process**
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-RegisterDevice-1.png)
+
+Copy the URL and paste it on your Device
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-RegisterDevice-2.png)
+
+Once you login, Download the HockeyApp for Android.
+
+![](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/03%20DevOps-Labs/screenshots/Hockey-App-RegisterDevice-3.png)
+
+That's it. Now install the HockeyApp that was downloaded and run the app. Login with your credentials and you will see the MyEvents app being listed there. You can send this link to your beta testers and they will be notified whenever a new build happens.
+
+### Great Reads
+
+* [Continuous Integration for Android with Visual Studio Team Services](https://blog.xamarin.com/continuous-integration-for-android-with-visual-studio-team-services/)
+* [Continuous Delivery to Google Play with Team Services](https://blog.xamarin.com/continuous-delivery-to-google-play-with-team-services/)
+* [Continuous Integration for iOS Apps with Visual Studio Team Services](https://blog.xamarin.com/continuous-integration-for-ios-apps-with-visual-studio-team-services/)
+
 
