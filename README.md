@@ -27,6 +27,29 @@ Here is the full guide for both Mac OS X and Windows to help get you started:
 
 In order to test the part of iOS, for those who do not have a MAC, you can use one of the weekly plans [MacInCloud](https://www.macincloud.com/checkout/managed.html) (Europe Server, OS El Capitain) with the option Enable Remote Build Port enabled.
 
+###Visual Studio Emulator for Android
+
+Instructions to Launch **Visual Studio Emulator for Android** and run an Android Virtual Emulator.
+
+ Click on the _Tools_ menu and click on _Visual Studio Emulator for Android._
+
+![launch](https://cloud.githubusercontent.com/assets/10905781/18432739/6275e418-7901-11e6-828d-aa0e7fb23c59.png)
+
+
+If Visual Studio Emulator for Android is not installed, you can follow theses instructions to install:
+
+1.  Either launch Visual Studio Installer or launch from Control Panel > Programs & Features.
+
+2. Click on Modify.
+
+![modify](https://cloud.githubusercontent.com/assets/10905781/18432456/ad985cc0-78ff-11e6-8134-679a93c9a65a.png)
+
+3. In the set of components, check the box beside Microsoft Visual Studio Emulator for Android.
+
+![install](https://cloud.githubusercontent.com/assets/10905781/18432518/0c5a5358-7900-11e6-91ef-4bcfb148143b.png)
+
+Install and Re-Launch Visual Studio.
+
 ##License
 Copyright (c) 2016 Nish Anil
 
