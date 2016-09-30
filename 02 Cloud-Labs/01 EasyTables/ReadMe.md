@@ -106,7 +106,7 @@ Select *Create new* and call it **DevDaysHOL**
 A resource group is a group of related services that can be easily deleted later.
 
 **App Service plan/Location**
-Click this field and select **Create New**, give it a unique name, select a location (typically you would choose a location close to your customers), and then select the F1 Free tier:
+Click this field and select **Create New**, give it a unique name, select a location (typically you would choose a location close to your customers), and then select the F1 Free tier (Click `View All` button to list app pricing tiers and select the Free Tier):
 
 ![service plan](https://raw.githubusercontent.com/nishanil/Dev-Days-HOL/master/02%20Cloud-Labs/screenshots/AppServicePlan.png?token=AC9rthXITHONt9uipHwM0b3XacA9v2qKks5X0q-WwA%3D%3D)
 
