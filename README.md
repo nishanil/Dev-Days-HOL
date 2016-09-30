@@ -55,7 +55,7 @@ Install and Re-Launch Visual Studio.
 If you get this error:
 > Unzipping failed. Please download https://dl-ssl.google.com/android/repository/support_r19.0.1.zip and extract it to the C:\Users<username>\AppData\Local\Xamarin\Android.Support.v4\19.0.1\content directory. 
 
-Solution to this issue is to clear all the folders in the location _C:\Users\<username>\AppData\Local\Xamarin_ and then **Clean** and **Rebuild** the Solution. This build might take some time (serveral minutes) as all the packages will be downloaded again by the Visual Studio.
+`Quick workaround`: Clear all the folders in the location _C:\Users\<username>\AppData\Local\Xamarin_ and then **Clean** and **Rebuild** the Solution. This build might take some time (serveral minutes) as all the packages will be downloaded again by the Visual Studio.
 
 ##License
 Copyright (c) 2016 Nish Anil
