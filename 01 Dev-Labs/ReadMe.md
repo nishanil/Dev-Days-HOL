@@ -152,6 +152,7 @@ Inside of the constructor, create a new instance of the `ObservableCollection`:
 public SpeakersViewModel()
 {
     Speakers = new ObservableCollection<Speaker>();
+    Title = "Speakers";
 }
 ```
 ##### GetSpeakers Method
