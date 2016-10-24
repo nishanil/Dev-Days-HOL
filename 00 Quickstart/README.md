@@ -1,6 +1,6 @@
 ## Dev Days HOL - Quickstart
 
-Cloud Labs are split into two Modules -
+Quickstart Labs contains the following modules -
 * [WeatherApp - Quick understanding on how locations work on Android and iOS] (https://github.com/nishanil/Dev-Days-HOL/tree/master/00%20Quickstart/WeatherApp)
 * [Phoneword]()
 
