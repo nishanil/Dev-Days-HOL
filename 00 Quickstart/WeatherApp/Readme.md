@@ -1,12 +1,11 @@
 # Weather App Xamarin.iOS
 
-In this module we will build a native iOS and Android app using Visual Studio, Xamarin.iOS and Xamarin.Android
-The app we are building is called Weather App that gets the weather information from a web services
-when you tap a location on the Maps.
+In this module you will build a native iOS and Android app using Visual Studio, Xamarin.iOS and Xamarin.Android
+The app you are building is called Weather App that gets the weather information from a web service.
 
 ## Overview
 
-What we will learn in this lab?
+What you will learn in this lab?
 
 - Calling web method to get weather data
 - Code sharing between iOS and Android app
@@ -26,9 +25,6 @@ That we will use to complete this exercise
 Before executing the labs be sure to setup your macOS or Windows machines as mentioned in the Lab Setup guidelines. 
 The steps & screenshots in this guide focuses on Visual Studio development in Windows. 
 However, the same labs can be executed in Xamarin Studio on a macOS too. 
-
-When you rung the app, the iOS simulator should start and load the app with blank screen. Now you are all set up to write some code!
-
 
 ### Android 
 
@@ -305,3 +301,9 @@ Once you competed this exercise, you can try extend the app with:
 
 - Display current weather icon
 - Add forecast details
+
+- Add map control to Android app, you can find the instructions [here](https://developer.xamarin.com/guides/android/platform_features/maps_and_location/maps/)
+
+---
+
+Author: [Prashant Cholachagudda](https://github.com/prashantvcv)
