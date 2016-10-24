@@ -246,7 +246,6 @@ alert.SetTitle("Weather").SetMessage(tempdata).Show();
 13. Run the application. After a short while, the location of the GPS should be displayed. Be patient it can take a little while to display the co-ordinates
 
 14. Click the button Get Weather to show the current tempreture for the address
-
 ### iOS
 
 The projects contains a `Main.storyboard` file a interface designer surface where we will 
@@ -306,4 +305,4 @@ Once you competed this exercise, you can try extend the app with:
 
 ---
 
-Author: [Prashant Cholachagudda](https://github.com/prashantvcv)
+Author: [Prashant Cholachagudda](https://github.com/prashantvc)
