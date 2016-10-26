@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <Content Include="ScreenImages\01-Library-Targets.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PhonewordTranslator.cs" />
