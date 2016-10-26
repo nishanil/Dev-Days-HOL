@@ -1,32 +1,87 @@
-# Phoneword - 'Hello World' for Mobile Developers
-
-**Overview:**
+#### Phoneword - 'Hello World' for Mobile Developers
 
 When someone starts to learn programming, the first chapter is always a 'Hello World', be it printing it in C/C++, displaying it in HTML web page or popup message box in desktop application. 
 As this lab is aimed for mobile applications, let's build a mobile app which will make use phone functionality and make a phone call.
 
-**Requirements:**
+#### Overview
+
+This lab will cover creating an Android & iOS apps for making a phone call. 
+
+#### Requirements
 
 This lab requires Xamarin components installed on Mac or on Windows. 
 
-**Building Phoneword App:**
+#### Building Phoneword App
 
-Create a blank Visual Studio solution with name Phoneword. In this solution create three projects as:
+Create a cross-platform 'Blank App (Native Portable)'. This will create projects for Portable Class Library, Android and iOS. 
 
-- Portable Class Library Project: Phoneword.Library
-
-For this project make sure Xamarin.Android and Xamarin.iOS is selected as targets on next screen.
-
-![01 Library Targets](Finish/Phoneword/Phoneword.Portable/ScreenImages/01-Library-Targets.PNG)
-
-- Android 'Blank App' Project : Phoneword.Droid
-- iPhone 'Single View Application' Project: Phoneword.iOS
-
-Alternatively, download this repository and start modifying the existing projects.
+![01 Project Template Selection](Finish/Phoneword/Phoneword.Portable/ScreenImages/01-Project-Template-Selection.png)
 
 Now, let's build these projects individually. 
 
-## Phoneword for Android
+#### Phoneword (Portable Class Library)
+
+- Open MyClass.cs from Phoneword (PCL) and rename it to PhonewordTranslator.cs 
+- Also rename the class
+- In the class add following code
+
+```csharp
+public static class PhonewordTranslator
+{
+	public static string ToNumber(string raw)
+	{
+		if (string.IsNullOrWhiteSpace(raw))
+			return "";
+		else
+			raw = raw.ToUpperInvariant();
+
+		var newNumber = new StringBuilder();
+       foreach (var c in raw)
+		{
+			if (" -0123456789".Contains(c))
+				newNumber.Append(c);
+			else {
+				var result = TranslateToNumber(c);
+              if (result != null)
+					newNumber.Append(result);
+			}
+           // otherwise we've skipped a non-numeric char
+		}
+       return newNumber.ToString();
+}
+
+
+	static bool Contains (this string keyString, char c)
+	{
+		return keyString.IndexOf(c) >= 0;
+	}
+
+	static int? TranslateToNumber(char c)
+	{
+		if ("ABC".Contains(c))
+			return 2;
+		else if ("DEF".Contains(c))
+			return 3;
+		else if ("GHI".Contains(c))
+			return 4;
+		else if ("JKL".Contains(c))
+			return 5;
+		else if ("MNO".Contains(c))
+			return 6;
+		else if ("PQRS".Contains(c))
+			return 7;
+		else if ("TUV".Contains(c))
+			return 8;
+		else if ("WXYZ".Contains(c))
+			return 9;
+		return null;
+	}
+}
+```
+
+
+
+#### Phoneword for Android
 
 **Overview**
 
@@ -38,7 +93,7 @@ There are three steps to complete this project
 
 **Step 1: Creating User Interface**
 
-- Create on open existing Phoneword.Droid project and locate Main.axml within Resources > Layout folder. 
+- Open existing Phoneword.Droid project and locate Main.axml within Resources > Layout folder. 
 - Use drag and drop feature to create user interface for Phoneword. 
 - Add EditText to enter the Phoneword. Name it as PhonewordText
 - Use Button to translate this Phoneword to a valid phone number. Name it as TranslateButton
@@ -76,7 +131,6 @@ There are three steps to complete this project
 
 **Step 2: Adding code behind**
 
-- Add reference to your Phoneword.Library project from Phoneword.Droid project
 - In MainActivity.cs write following code above constructor. 
 
 ```csharp
