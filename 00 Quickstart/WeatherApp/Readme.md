@@ -1,4 +1,4 @@
-# Weather App Xamarin.iOS
+# Weather App for iOS and Android
 
 In this module you will build a native iOS and Android app using Visual Studio, Xamarin.iOS and Xamarin.Android
 The app you are building is called Weather App that gets the weather information from a web service.
