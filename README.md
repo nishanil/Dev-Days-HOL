@@ -7,6 +7,7 @@ Inside this repo you will find all of the hands on labs that you will experience
 
 ##Overview
 The Hands On Labs are broken down into 3 modules:
+* [00 Quickstart - Samples to get you started on Traditional Approach](https://github.com/nishanil/Dev-Days-HOL/tree/master/00%20Quickstart)
 * [01 Dev-Labs - Learn to create a Xamarin.Forms app from scratch](https://github.com/nishanil/Dev-Days-HOL/tree/master/01%20Dev-Labs)
 * [02 Cloud-Labs - Building Cloud connected & Offline Sync Apps](https://github.com/nishanil/Dev-Days-HOL/tree/master/02%20Cloud-Labs)
   * [Create a no code backend with Easy Tables](https://github.com/nishanil/Dev-Days-HOL/tree/master/02%20Cloud-Labs/01%20EasyTables)
