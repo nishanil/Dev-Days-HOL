@@ -95,9 +95,9 @@ There are three steps to complete this project
 
 - Open existing Phoneword.Droid project and locate Main.axml within Resources > Layout folder. 
 - Use drag and drop feature to create user interface for Phoneword. 
-- Add EditText to enter the Phoneword. Name it as PhonewordText
-- Use Button to translate this Phoneword to a valid phone number. Name it as TranslateButton
-- Use Button to call this translated number. Name it as CallButton
+- Add 'EditText' to enter the Phoneword. Name it as 'PhonewordText'
+- Use 'Button' to translate this Phoneword to a valid phone number. Name it as 'TranslateButton' & set Text peroprty to 'Translate'
+- Use Button to call this translated number. Name it as 'CallButton' & set the Text property to 'Call'
 - The UI should look like this:
 
 ![01 Phoneword U I](Finish/Phoneword/Phoneword.Droid/ScreenImages/01-Phoneword-UI.PNG)
@@ -131,6 +131,7 @@ There are three steps to complete this project
 
 **Step 2: Adding code behind**
 
+-Add a reference to Phoneword (Library) to Android Project
 - In MainActivity.cs write following code above constructor. 
 
 ```csharp
@@ -189,5 +190,68 @@ private void TranslateButton_Click(object sender, System.EventArgs e)
 Android applications require permissions to execute tasks like making a phone call. Open 'Properties' of the application and give permission to call.
 
 ![02 Call Permission](Finish/Phoneword/Phoneword.Droid/ScreenImages/02-Call-Permission.PNG)
+
+Now run the app and see it in action.
+
+#### Phoneword for iOS
+
+**Overview**
+
+In this lab, attendees will build their first iOS application which will translate the Phoneword and make a phone call. 
+
+**Creating Phoneword.iOS Project**
+
+There are three steps to complete this project
+
+**Step 1: Creating User Interface**
+
+- Open existing Phoneword.iOS project and locate Main.storyboard. Make sure Visual Studio is connected to Mac to load the storyboard and build the iOS project.
+- Use drag and drop feature to create user interface for Phoneword. 
+- Add 'Text Field' to enter the Phoneword. Name it as PhonewordText. Set the Text property to blank to empty the textbox.
+- Use 'Button' to translate this Phoneword to a valid phone number. Name it as TranslateButton. Set the text to 'Translate'
+- Use Button to call this translated number. Name it as CallButton & set the Text property to 'Call'
+- The UI should look like this:
+
+![01 I O S U I](Finish/Phoneword/Phoneword.iOS/ScreenImage/01-iOS-UI.png)
+
+**Step 2: Adding code behind**
+
+- Add a reference to Phoneword (Library) to iOS Project
+- In ViewController.cs write following code above constructor. 
+
+```csharp
+ string translatedNumber = "";
+```
+- In ViewDidLoad() method, add following code
+
+```csharp
+base.ViewDidLoad();
+TranslateButton.TouchUpInside += (object sender, EventArgs e) =>
+{
+   // Convert the phone number with text to a number
+   // using PhoneTranslator.cs
+   translatedNumber = PhonewordTranslator.ToNumber(
+                    PhonewordText.Text);
+// Dismiss the keyboard if text field was tapped
+   PhonewordText.ResignFirstResponder();
+};
+```
+
+- Use CallButton event handler to make a phone call to translated number.
+
+```csharp
+CallButton.TouchUpInside += (object sender, EventArgs e) => 
+{
+   // Use URL handler with tel: prefix to invoke Apple's Phone app...
+   var url = new NSUrl("tel:" + translatedNumber);
+   if (!UIApplication.SharedApplication.OpenUrl(url))
+   {
+      var alert = UIAlertController.Create("Not supported", "Scheme 'tel:' is not supported on this device", UIAlertControllerStyle.Alert);
+      alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+      PresentViewController(alert, true, null);
+    }
+};
+```
+**Step 3: Running the app**
 
 Now run the app and see it in action.
