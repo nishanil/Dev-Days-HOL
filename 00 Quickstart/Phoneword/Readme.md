@@ -1,6 +1,7 @@
 #### Phoneword - 'Hello World' for Mobile Developers
 
 When someone starts to learn programming, the first chapter is always a 'Hello World', be it printing it in C/C++, displaying it in HTML web page or popup message box in desktop application. 
+
 As this lab is aimed for mobile applications, let's build a mobile app which will make use phone functionality and make a phone call.
 
 #### Overview
@@ -9,20 +10,19 @@ This lab will cover creating an Android & iOS apps for making a phone call.
 
 #### Requirements
 
-This lab requires Xamarin components installed on Mac or on Windows. 
+This lab requires Xamarin components installed on Mac or on Windows. Download or clone this repository to start executing the lab. 
 
-#### Building Phoneword App
+## Building Phoneword App ##
 
-Create a cross-platform 'Blank App (Native Portable)'. This will create projects for Portable Class Library, Android and iOS. 
+You can open existing Phoneword application from this repository or create a cross-platform 'Blank App (Native Portable)'. This will create projects for Portable Class Library, Android and iOS. 
 
 ![01 Project Template Selection](Finish/Phoneword/Phoneword.Portable/ScreenImages/01-Project-Template-Selection.png)
 
 Now, let's build these projects individually. 
 
-#### Phoneword (Portable Class Library)
+## Phoneword (Portable Class Library) ##
 
-- Open MyClass.cs from Phoneword (PCL) and rename it to PhonewordTranslator.cs 
-- Also rename the class
+- Open `MyClass.cs` from Phoneword (PCL) or add a new class to this project and rename it to `PhonewordTranslator.cs` 
 - In the class add following code
 
 ```csharp
@@ -36,7 +36,7 @@ public static class PhonewordTranslator
 			raw = raw.ToUpperInvariant();
 
 		var newNumber = new StringBuilder();
-       foreach (var c in raw)
+       	foreach (var c in raw)
 		{
 			if (" -0123456789".Contains(c))
 				newNumber.Append(c);
@@ -47,9 +47,8 @@ public static class PhonewordTranslator
 			}
            // otherwise we've skipped a non-numeric char
 		}
-       return newNumber.ToString();
-}
-
+       	return newNumber.ToString();
+	}
 
 	static bool Contains (this string keyString, char c)
 	{
@@ -80,29 +79,28 @@ public static class PhonewordTranslator
 ```
 
 
-
-#### Phoneword for Android
+ ## Phoneword for Android ##
 
 **Overview**
 
 In this lab, attendees will build their first Android application which will translate the Phoneword and make a phone call. 
 
-**Creating Phoneword.Droid Project**
+**Open Phoneword.Droid Project**
 
 There are three steps to complete this project
 
 **Step 1: Creating User Interface**
 
-- Open existing Phoneword.Droid project and locate Main.axml within Resources > Layout folder. 
+- Open existing `Phoneword.Droid` project and locate Main.axml within `Resources > Layout` folder. 
 - Use drag and drop feature to create user interface for Phoneword. 
-- Add 'EditText' to enter the Phoneword. Name it as 'PhonewordText'
-- Use 'Button' to translate this Phoneword to a valid phone number. Name it as 'TranslateButton' & set Text peroprty to 'Translate'
-- Use Button to call this translated number. Name it as 'CallButton' & set the Text property to 'Call'
+- Add `EditText` to enter the Phoneword. Name it as 'PhonewordText'
+- Use `Button` to translate this Phoneword to a valid phone number. Name it as `TranslateButton` & set Text peroprty to **Translate**
+- Use `Button` to call this translated number. Name it as `CallButton` & set the Text property to **Call**
 - The UI should look like this:
 
 ![01 Phoneword U I](Finish/Phoneword/Phoneword.Droid/ScreenImages/01-Phoneword-UI.PNG)
 
-- The following code shows the code behind for this UI
+- Alternatively, use following code to create this this UI
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -131,8 +129,10 @@ There are three steps to complete this project
 
 **Step 2: Adding code behind**
 
--Add a reference to Phoneword (Library) to Android Project
-- In MainActivity.cs write following code above constructor. 
+
+
+- Add a reference to Phoneword (Library) to Android Project
+- In `MainActivity.cs` write following code above constructor. 
 
 ```csharp
  EditText phoneNumberText;
@@ -140,49 +140,50 @@ There are three steps to complete this project
  Button callButton;
  string TranslatedNumber; 
 ```
-- In constructor, set the layout file and assign controls to these variables. Along with it, set event handlers for the button.
+- In `OnCreate()` method, set the layout file and assign controls to these variables. Along with it, set event handlers for the button.
 
 ```csharp
 SetContentView (Resource.Layout.Main);
 phoneNumberText = FindViewById<EditText>(Resource.Id.PhonewordText);
 translateButton = FindViewById<Button>(Resource.Id.TranslateButton);
 callButton = FindViewById<Button>(Resource.Id.CallButton);
+
+translateButton.Click += TranslateButton_Click;
+callButton.Click += CallButton_Click;
 ```
 
-- Using the PhonewordTranslator class in Phoneword.Library, translate the phoneword. This logic can be added in TranslateButton click event
+- Using the `PhonewordTranslator` class from Phoneword (Portable Class Library), translate the phoneword. This logic can be added in `TranslateButton` click event
 
 ```csharp
 private void TranslateButton_Click(object sender, System.EventArgs e)
 {
 	TranslatedNumber = PhonewordTranslator.ToNumber(phoneNumberText.Text);
-	if (string.IsNullOrWhiteSpace(TranslatedNumber))
-	{
-		callButton.Text = "Call";
-		callButton.Enabled = false;
+    if (string.IsNullOrWhiteSpace(TranslatedNumber))
+    {
+    	callButton.Text = "Call";
+        callButton.Enabled = false;
 	}
     else
     {
-		callButton.Text = "Call " + TranslatedNumber;
-       callButton.Enabled = true;
+    	callButton.Text = "Call " + TranslatedNumber;
+        callButton.Enabled = true;
 	}
 }
 ```
-- Use TranslatedNumber to make phone call. Write that logic to make a phone call inside CallButton click event
+- Use `TranslatedNumber` to make phone call. Write that logic to make a phone call inside CallButton click event
 
 ```csharp
-private void TranslateButton_Click(object sender, System.EventArgs e)
+private void CallButton_Click(object sender, System.EventArgs e)
 {
-	TranslatedNumber = PhonewordTranslator.ToNumber(phoneNumberText.Text);
-	if (string.IsNullOrWhiteSpace(TranslatedNumber))
-	{
-		callButton.Text = "Call";
-		callButton.Enabled = false;
-	}
-    else
-    {
-		callButton.Text = "Call " + TranslatedNumber;
-       callButton.Enabled = true;
-	}
+	var callDialog = new AlertDialog.Builder(this);
+    callDialog.SetMessage("Call " + TranslatedNumber + "?");
+    callDialog.SetNeutralButton("Call", delegate {
+    	var callIntent = new Intent(Intent.ActionCall);
+        callIntent.SetData(Android.Net.Uri.Parse("tel:" + TranslatedNumber));
+        StartActivity(callIntent);
+	});
+    callDialog.SetNegativeButton("Cancel", delegate { });
+    callDialog.Show();
 }
 ```
 **Step 3: Running the app**
@@ -193,7 +194,7 @@ Android applications require permissions to execute tasks like making a phone ca
 
 Now run the app and see it in action.
 
-#### Phoneword for iOS
+## Phoneword for iOS ##
 
 **Overview**
 
@@ -205,11 +206,11 @@ There are three steps to complete this project
 
 **Step 1: Creating User Interface**
 
-- Open existing Phoneword.iOS project and locate Main.storyboard. Make sure Visual Studio is connected to Mac to load the storyboard and build the iOS project.
+- Open existing Phoneword.iOS project and locate `Main.storyboard`. Make sure Visual Studio is connected to Mac to load the storyboard and build the iOS project.
 - Use drag and drop feature to create user interface for Phoneword. 
-- Add 'Text Field' to enter the Phoneword. Name it as PhonewordText. Set the Text property to blank to empty the textbox.
-- Use 'Button' to translate this Phoneword to a valid phone number. Name it as TranslateButton. Set the text to 'Translate'
-- Use Button to call this translated number. Name it as CallButton & set the Text property to 'Call'
+- Add `Text Field` to enter the Phoneword. Name it as **PhonewordText**. Set the Text property to blank to empty the textbox.
+- Use `Button` to translate this Phoneword to a valid phone number. Name it as **TranslateButton**. Set the text to **Translate**
+- Use `Button` to call this translated number. Name it as **CallButton** & set the Text property to **Call**
 - The UI should look like this:
 
 ![01 I O S U I](Finish/Phoneword/Phoneword.iOS/ScreenImage/01-iOS-UI.png)
@@ -217,12 +218,12 @@ There are three steps to complete this project
 **Step 2: Adding code behind**
 
 - Add a reference to Phoneword (Library) to iOS Project
-- In ViewController.cs write following code above constructor. 
+- In `ViewController.cs` write following code above constructor. 
 
 ```csharp
  string translatedNumber = "";
 ```
-- In ViewDidLoad() method, add following code
+- In `ViewDidLoad()` method, add following code
 
 ```csharp
 base.ViewDidLoad();
@@ -237,7 +238,7 @@ TranslateButton.TouchUpInside += (object sender, EventArgs e) =>
 };
 ```
 
-- Use CallButton event handler to make a phone call to translated number.
+- Use `CallButton` event handler to make a phone call to translated number.
 
 ```csharp
 CallButton.TouchUpInside += (object sender, EventArgs e) => 
