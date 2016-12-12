@@ -20,7 +20,7 @@ You can open existing Phoneword application from this repository or create a cro
 
 Now, let's build these projects individually. 
 
-## Phoneword (Portable Class Library) ##
+## Phoneword (Portable Class Library)
 
 - Open `MyClass.cs` from Phoneword (PCL) or add a new class to this project and rename it to `PhonewordTranslator.cs` 
 - In the class add following code
@@ -79,7 +79,7 @@ public static class PhonewordTranslator
 ```
 
 
- ## Phoneword for Android ##
+## Phoneword for Android
 
 **Overview**
 
