@@ -100,7 +100,7 @@ protected override void OnCreate(Bundle bundle)
 
     _addressText = FindViewById<TextView>(Resource.Id.address_text);
     _locationText = FindViewById<TextView>(Resource.Id.location_text);
-    FindViewById<TextView>(Resource.Id.get_address_button).Click += WeatherButton_OnClick;
+    FindViewById<TextView>(Resource.Id.get_weather).Click += WeatherButton_OnClick;
 
     InitializeLocationManager();
 }
@@ -108,7 +108,7 @@ protected override void OnCreate(Bundle bundle)
 The handler for button click will be covered below. The logic for initializing the LocationManager is placed in its own method for clarity.
 
 7. Add a method called InitializeLocationManager to **MainActivity.cs**:
-```
+```csharp
 void InitializeLocationManager()
 {
     _locationManager = (LocationManager) GetSystemService(LocationService);
@@ -187,7 +187,7 @@ async Task<Address> ReverseGeocodeCurrentLocation()
 {
     Geocoder geocoder = new Geocoder(this);
     IList<Address> addressList =
-        await geocoder.GetFromLocationAsync(_currentLocation.Latitude, _currentLocation.Longitude, 10);
+        await geocoder.GetFromLocationAsync(_currentLocation.Latitude, _currentLocation.Longitude, 10);
 
     Address address = addressList.FirstOrDefault();
     return address;
@@ -238,7 +238,8 @@ You will need to add the `System.Xml.Linq` assembly.
 14. Call `GetWeather` method in `WeatherButton_OnClick`, add the below code after `DisplayAddress` method
 
 ```csharp           
-string tempdata = await _weatherApi.GetWeather(_currentLocation.Longitude, _currentLocation.Latitude);
+WeatherAPI _weatherApi = new WeatherAPI();
+string tempdata = await _weatherApi.GetWeather(_currentLocation.Latitude, _currentLocation.Longitude);
 var alert = new AlertDialog.Builder(this);
 alert.SetTitle("Weather").SetMessage(tempdata).Show();
 ```            
