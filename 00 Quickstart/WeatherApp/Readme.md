@@ -36,19 +36,19 @@ You need add locate [permissions](https://developer.android.com/guide/topics/sec
 1. Create a new Xamarin.Android application named GetLocation.
 2. Edit **AssemblyInfo.cs**, and declare the permissions necessary to use the LocationServices:
 
-```    
+```csharp
 [assembly: UsesPermission(Manifest.Permission.AccessFineLocation)]
 [assembly: UsesPermission(Manifest.Permission.AccessCoarseLocation)]
 ```
 
 3. Declare the permissions necessary to use the Geocoder class. This is not strictly necessary for obtaining the GPS coordinates of the device, but this example will attempt to provide a street address for the current location:
-```
+```csharp
 [assembly: UsesPermission(Manifest.Permission.Internet)]
 ```
 
 4. Edit **Main.axml** so that it contains two TextViews and a Button:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -81,8 +81,8 @@ You need add locate [permissions](https://developer.android.com/guide/topics/sec
 ```
 
 5. Add some instance variables to **MainActivity.cs**:
-```
-static readonly string TAG = "X:" + typeof (Activity1).Name;
+```csharp
+static readonly string TAG = "X:" + typeof (MainActivity).Name;
 TextView _addressText;
 Location _currentLocation;
 LocationManager _locationManager;
@@ -92,7 +92,7 @@ TextView _locationText;
 ```
 6. Change `OnCreate` method: 
 
-```
+```csharp
 protected override void OnCreate(Bundle bundle)
 {
     base.OnCreate(bundle);
@@ -133,9 +133,9 @@ void InitializeLocationManager()
 The `LocationManager` class will listen for GPS updates from the device and notify the application by way of events. In this example we ask Android for the best location provider that matches a given set of `Criteria` and provide that provider to `LocationManager`.
 
 8. Edit **MyActivity.cs** and have it implement the interface `ILocationListener` and add in the methods required by that interface:
-```
+```csharp
 [Activity(Label = "Get Location", MainLauncher = true, Icon = "@drawable/icon")]
-public class Activity1 : Activity, ILocationListener
+public class MainActivity : Activity, ILocationListener
 {
     // removed code for clarity
 
@@ -150,7 +150,7 @@ public class Activity1 : Activity, ILocationListener
 ```
 
 9. Override `OnResume` so that `MyActivity` will begin listening to the `LocationManager` when the activity comes into the foreground:
-```
+```csharp
 protected override void OnResume()
 {
     base.OnResume();
@@ -159,7 +159,7 @@ protected override void OnResume()
 ```
 
 10. Override `OnPause` and unsubscribe `MainActivity` from the `LocationManager` when the activity goes into the background:
-```
+```csharp
 protected override void OnPause()
 {
     base.OnPause();
@@ -170,7 +170,7 @@ We reduce the demands on the battery by unsubscribing from the LocationManager w
 
 11. Add an event handler called `WeatherButton_OnClick` to MainActivity. This button allows the user to try and get the address from the latitude and longitude. 
 The snippet below contains the code for `WeatherButton_OnClick`:
-```
+```csharp
 async void WeatherButton_OnClick(object sender, EventArgs eventArgs)
 {
     if (_currentLocation == null)
@@ -215,7 +215,7 @@ void DisplayAddress(Address address)
 The `ReverseGeocodeCurrentLocation` method will asynchronously lookup a collection of `Address` objects for the currrent location. Depending on factors such as the location and network availability, none, one, or multiple addresses will be returned. The first address (if possible) will be passed to the method `DisplayAddress` which will display the address in the Activity. 
 
 12. Update the method `OnLocationChanged` to display the latitude and longitude when GPS updates are received and update the address:
-```
+```csharp
 public async void OnLocationChanged(Location location)
 {
     _currentLocation = location;
@@ -237,7 +237,7 @@ You will need to add the `System.Xml.Linq` assembly.
 
 14. Call `GetWeather` method in `WeatherButton_OnClick`, add the below code after `DisplayAddress` method
 
-```           
+```csharp           
 string tempdata = await _weatherApi.GetWeather(_currentLocation.Longitude, _currentLocation.Latitude);
 var alert = new AlertDialog.Builder(this);
 alert.SetTitle("Weather").SetMessage(tempdata).Show();
@@ -276,7 +276,7 @@ Please follow the instructions to add a controls to the design surface
 4. Add the **WeatherPCL** project reference to your project
 5. Pass the _longitude_ and _latitude_ values from `MyMap.Region.Center` value to the `GetWeather` method from `WeatherAPI` classs, where we get weather information from the web service
 6. Update the `MyMap_RegionChanged` code to:
-```
+```csharp
 async void MyMap_RegionChanged(object sender, MKMapViewChangeEventArgs e)
 {
     var weatherApi = new WeatherAPI();
