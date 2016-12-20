@@ -87,7 +87,7 @@ namespace WeatherApp.Android
             DisplayAddress(address);
 
             
-            string tempdata = await _weatherApi.GetWeather(_currentLocation.Longitude, _currentLocation.Latitude);
+            string tempdata = await _weatherApi.GetWeather(_currentLocation.Latitude, _currentLocation.Longitude);
             var alert = new AlertDialog.Builder(this);
             alert.SetTitle("Weather").SetMessage(tempdata)
                 .Show();
