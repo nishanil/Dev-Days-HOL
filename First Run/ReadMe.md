@@ -52,14 +52,18 @@ Generally, you would not be seeing the errors described in this document if your
 - [https://dl.google.com/android](https://dl.google.com/android ) 
 - [https://api.nuget.org/v3/](https://api.nuget.org/v3/index.json)
 
-
 **M2Repository:**
 You may see m2repository errors when referencing a NuGet package of the Android Support Libraries or Google Play services. 
 The error message resembles the following:
 
 *Download failed. Please download https://dl-ssl.google.com/android/repository/android_m2repository_r22.zip and extract it to the C:\Users\{UserName}\AppData\Local\Xamarin\Android.Support.v4\23.0.0\content directory.*
 
-The Fix:
+`Quick workaround`: Clear all the folders in the location _C:\Users\<username>\AppData\Local\Xamarin_ and then **Clean** and **Rebuild** the Solution. This build might take some time (serveral minutes) as all the packages will be downloaded again by the Visual Studio.
+
+If you're not an stable network, you may want to try the offline fix listed below.
+
+The Offline Fix:
+
 1. Close any open instances of Visual Studio
 
 2. Download the file [https://dl-ssl.google.com/android/repository/android_m2repository_r22.zip](https://dl-ssl.google.com/android/repository/android_m2repository_r22.zip) 
