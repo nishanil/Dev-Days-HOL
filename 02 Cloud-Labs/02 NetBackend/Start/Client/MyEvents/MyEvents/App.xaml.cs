@@ -12,8 +12,10 @@ namespace MyEvents
     public partial class App : Application
     {
         public static IDataManager DataManager = AzureDataManager.DefaultManager;
+		public static bool IsMobileServiceConfigured { get; set; } = Constants.ApplicationURL != "https://<yourappservicename>.azurewebsites.net";
 
-        public App()
+
+		public App()
         {
             InitializeComponent();
 
@@ -38,9 +40,14 @@ namespace MyEvents
             MainPage = mainPage;
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
             // Handle when your app starts
+			if (!App.IsMobileServiceConfigured)
+			{
+				await Application.Current.MainPage.DisplayAlert("App not configured", "Edit the Constants.cs file.", "OK");
+				return;
+			}
         }
 
         protected override void OnSleep()

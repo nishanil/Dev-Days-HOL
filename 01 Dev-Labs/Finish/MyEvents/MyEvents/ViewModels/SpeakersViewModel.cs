@@ -41,7 +41,7 @@ namespace MyEvents.ViewModels
                 using (var client = new HttpClient())
                 {
                     //grab json from server
-                    var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+                    var json = await client.GetStringAsync("https://demo4404797.mockable.io/speakers");
 
                     //Deserialize json
                     var items = JsonConvert.DeserializeObject<List<Speaker>>(json);

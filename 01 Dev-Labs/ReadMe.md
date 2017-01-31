@@ -152,6 +152,7 @@ Inside of the constructor, create a new instance of the `ObservableCollection`:
 public SpeakersViewModel()
 {
     Speakers = new ObservableCollection<Speaker>();
+    Title = "Speakers";
 }
 ```
 ##### GetSpeakers Method
@@ -212,7 +213,7 @@ Now, we will use *HttpClient* to grab the json from the server inside of the **t
 using(var client = new HttpClient())
 {
     //grab json from server
-    var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+    var json = await client.GetStringAsync("https://demo4404797.mockable.io/speakers");
 } 
 ```
 
@@ -252,7 +253,7 @@ private async Task GetSpeakers()
         using(var client = new HttpClient())
         {
             //grab json from server
-            var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+            var json = await client.GetStringAsync("https://demo4404797.mockable.io/speakers");
             
             //Deserialize json
             var items = JsonConvert.DeserializeObject<List<Speaker>>(json);
