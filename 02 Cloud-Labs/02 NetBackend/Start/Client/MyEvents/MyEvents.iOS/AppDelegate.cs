@@ -23,7 +23,7 @@ namespace MyEvents.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-
+            SQLitePCL.Batteries.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
             // For more information, see: http://go.microsoft.com/fwlink/?LinkId=620342
