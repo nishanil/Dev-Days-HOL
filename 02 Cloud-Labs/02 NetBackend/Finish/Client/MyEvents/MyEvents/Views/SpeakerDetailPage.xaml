@@ -5,7 +5,7 @@
              Title="{Binding Name}">
   <ScrollView Padding="10">
     <StackLayout Spacing="10">
-      <Image Source="{Binding Avatar}" HeightRequest="200" WidthRequest="200"/>
+      <Image Source="{Binding Avatar}" AutomationId="SpeakerImage" HeightRequest="200" WidthRequest="200"/>
 
       <Entry Text="{Binding Title, Mode=OneWay}"
               TextColor="Purple"
