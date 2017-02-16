@@ -1,3 +1,11 @@
+
+Build Status
+
+| Dev           | Easy Tables   | .NET Backend (Client)  | .NET Backend (Server) |
+| ------------- | ------------- | ---------------------- | --------------------- |
+| [![Build status](https://ci.appveyor.com/api/projects/status/xy29h2sayr5o7mnw?svg=true)](https://ci.appveyor.com/project/nishanil/dev-days-hol)  | [![Build status](https://ci.appveyor.com/api/projects/status/wg79oe7epjawxl1f?svg=true)](https://ci.appveyor.com/project/nishanil/dev-days-hol-7fp0h)  | [![Build status](https://ci.appveyor.com/api/projects/status/5h3anwlxndi8aw1q?svg=true)](https://ci.appveyor.com/project/nishanil/dev-days-hol-nrhl7)  | [![Build status](https://ci.appveyor.com/api/projects/status/4nld022hv66frv7w?svg=true)](https://ci.appveyor.com/project/nishanil/dev-days-hol-grrjx)  |
+
+
 ## Dev Days HOL
 Dev Days provide attendees with an intense, hands-on learning experience. Spend the time exploring mobile development with sessions from Xamarin & Azure Experts, our technology partners, and members of the local developer community, then roll up your sleeves for an afternoon dedicated to diving into code.
 
