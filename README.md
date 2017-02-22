@@ -23,7 +23,7 @@ The Hands On Labs are broken down into 3 modules:
 * [02 DevOps-Labs - VSTS + HockeyApp](https://github.com/nishanil/Dev-Days-HOL/tree/master/03%20DevOps-Labs)
 
 ##Pre-Requisites
-* Visual Studio 2015 Community Edition with latest Updates (or higher)
+* Visual Studio 2015 Community Edition (or higher) with latest Updates.
 * Xamarin
 * Visual Studio Android Emulator or Google Emulators
 * Azure subscription (for cloud labs)
